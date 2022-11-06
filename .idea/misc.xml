@@ -4,7 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Jason/Documents/GitHub/kocchiyomi/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1995" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.34479166666666666" />
