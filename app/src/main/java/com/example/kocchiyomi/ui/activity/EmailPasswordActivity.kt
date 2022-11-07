@@ -1,4 +1,4 @@
-package com.example.kocchiyomi
+package com.example.kocchiyomi.ui.activity
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
