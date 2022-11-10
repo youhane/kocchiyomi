@@ -14,7 +14,7 @@ class MainMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_menu);
 
-        swipeRefreshLayout = findViewById(R.id.swipe)
+        swipeRefreshLayout = findViewById(R.id.swiperefresh)
         swipeRefreshLayout.setOnRefreshListener {
             number++
 //            textView.text = " Total number = $number"
