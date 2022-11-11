@@ -2,10 +2,10 @@
 Mobile Programming Project made with Kotlin
 
 ### Group
-- Felicia Kwan
-- Jason Sebastian Sulistyawan
-- Kelvin Julian
-- Martinus Grady Naftali
+- Felicia Kwan - 2440006305
+- Jason Sebastian Sulistyawan - 2401960675
+- Kelvin Julian - 2401962213
+- Martinus Grady Naftali - 2401962453
 
 # A Manga Reader App using the MangaDex API
 Thanks! <a href='https://api.mangadex.org/docs/'>MangaDex</a> for the API 😉
