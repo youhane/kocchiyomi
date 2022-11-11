@@ -15,11 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/poppins_semibold"
-        android:text="@string/sign_in"
+        android:text="@string/sign_up"
         android:textColor="@color/colorText"
         android:textSize="30sp"
         android:textStyle="bold" />
-    
+
     <EditText
         android:autofillHints="username"
         android:id="@+id/username"
@@ -36,6 +36,23 @@
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorTextSecondary"
         android:layout_marginTop="40dp"
+        />
+    <EditText
+        android:autofillHints="email"
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/round_back_light_back5_15"
+        android:hint="Email"
+        android:maxLines="1"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextSecondary"
+        android:layout_marginTop="20dp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -61,22 +78,35 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorText"
-        android:text="Forgot Password"
-        android:fontFamily="@font/poppins"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signInBtn"
+    <com.google.android.material.textfield.TextInputLayout
+        app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="@string/sign_in"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:textColorHint="@color/colorTextSecondary"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:background="@drawable/round_back_light_back5_15"
+            android:hint="Confirm Password"
+            android:maxLines="1"
+            android:fontFamily="@font/poppins"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/colorText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signUpBtn"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/sign_up"
         android:fontFamily="@font/poppins_semibold"
         android:textAllCaps="false"
         android:layout_marginTop="40dp"
@@ -92,15 +122,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account "
+            android:text="Already have an account? "
             android:fontFamily="@font/poppins"
             android:textColor="@color/colorText"
             />
         <TextView
-            android:id="@+id/signUpBtn"
+            android:id="@+id/signInBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_up"
+            android:text="@string/sign_in"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/colorAccent"
             />
