@@ -7,6 +7,9 @@ Mobile Programming Project made with Kotlin
 - Kelvin Julian - 2401962213
 - Martinus Grady Naftali - 2401962453
 
+### Class
+LB08
+
 # A Manga Reader App using the MangaDex API
 Thanks! <a href='https://api.mangadex.org/docs/'>MangaDex</a> for the API 😉
 
