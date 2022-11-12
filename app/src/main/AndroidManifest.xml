@@ -14,21 +14,14 @@
         android:theme="@style/Theme.Kocchiyomi"
         tools:targetApi="30">
         <activity
-            android:name=".ui.activity.MainMenu"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activity.SplashScreen"
-            android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.Register"
-            android:exported="true" />
     </application>
 
 </manifest>
