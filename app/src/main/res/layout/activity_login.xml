@@ -11,6 +11,7 @@
     android:background="@color/colorPrimary">
 
     <TextView
+        android:id="@+id/tv_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -19,26 +20,36 @@
         android:textColor="@color/colorText"
         android:textSize="30sp"
         android:textStyle="bold" />
-    
-    <EditText
-        android:autofillHints="username"
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/round_back_light_back5_15"
-        android:hint="Username"
-        android:maxLines="1"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:fontFamily="@font/poppins"
-        android:textColor="@color/colorText"
-        android:textColorHint="@color/colorTextSecondary"
-        android:layout_marginTop="40dp"
-        />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signin_email"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorTextSecondary"
+        >
+        <EditText
+            android:id="@+id/et_signin_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/round_back_light_back5_15"
+            android:fontFamily="@font/poppins"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signin_password"
+        android:autofillHints="password"
         app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -46,8 +57,8 @@
         android:textSize="16sp"
         android:textColorHint="@color/colorTextSecondary"
         >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
+        <EditText
+            android:id="@+id/et_signin_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword"
@@ -62,7 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/forgotPassword"
+        android:id="@+id/tv_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -73,7 +84,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signInBtn"
+        android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="@string/sign_in"
@@ -90,6 +101,7 @@
         android:gravity="center"
         android:layout_marginTop="40dp">
         <TextView
+            android:id="@+id/tv_dont_have_and_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account "
@@ -97,7 +109,7 @@
             android:textColor="@color/colorText"
             />
         <TextView
-            android:id="@+id/signUpBtn"
+            android:id="@+id/tv_singup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
