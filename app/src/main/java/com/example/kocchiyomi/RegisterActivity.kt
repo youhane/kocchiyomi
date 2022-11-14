@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
                     makeToast("Please enter email")
                 }
 
-                isValidEmail(email) -> {
+                !isValidEmail(email) -> {
                     makeToast("Please enter valid email")
                 }
 
@@ -45,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
                     makeToast("Please confirm password")
                 }
 
-                TextUtils.equals(password, confirmPassword) -> {
+                !TextUtils.equals(password, confirmPassword) -> {
                     makeToast("The password does not match")
                 }
 
@@ -80,7 +80,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun isValidEmail(str: CharSequence):Boolean{
         return Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
-
     private fun makeToast(msg: String) {
         Toast.makeText(
             this@RegisterActivity,

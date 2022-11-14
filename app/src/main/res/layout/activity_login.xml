@@ -18,8 +18,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/sign_in"
         android:textColor="@color/colorText"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textSize="30sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signin_email"
