@@ -20,9 +20,9 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+    ): View {
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,11 +37,11 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerEvents(){
-        binding.gotoLogin.setOnClickListener(){
-//            navControl.navigate(R.id.)
+        binding.gotoLogin.setOnClickListener{
+            navControl.navigate(R.id.action_registerFragment_to_loginFragment)
         }
 
-        binding.registerBtn.setOnClickListener(){
+        binding.registerBtn.setOnClickListener{
             val email = binding.emailInput.text.toString()
             val pass = binding.passInput.text.toString().trim()
             val reEnterPass = binding.passReInput.text.toString().trim()
@@ -49,7 +49,7 @@ class RegisterFragment : Fragment() {
             if(email.isNotEmpty() && pass.isNotEmpty() && reEnterPass.isNotEmpty()){
                 if(pass == reEnterPass){
                     binding.progressBar.visibility = View.VISIBLE
-                    auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(){
+                    auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
                             navControl.navigate(R.id.action_registerFragment_to_homeFragment)
