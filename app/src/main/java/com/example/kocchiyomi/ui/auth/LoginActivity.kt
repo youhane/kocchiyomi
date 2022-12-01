@@ -1,7 +1,8 @@
-package com.example.kocchiyomi
+package com.example.kocchiyomi.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kocchiyomi.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

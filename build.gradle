@@ -1,4 +1,14 @@
 buildscript {
+    ext {
+        firebaseAuth_version = "21.0.2"
+        gsm_version = "20.3.0"
+        nav_version = "2.5.3"
+        room_version = "2.3.0"
+        retrofit_version = "2.9.0"
+        retrofitConverter_version = "2.5.0"
+        gson_version = "2.9.0"
+
+    }
     repositories {
         google()
     }
