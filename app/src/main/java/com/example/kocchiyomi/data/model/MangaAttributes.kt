@@ -1,4 +1,4 @@
-package com.example.kocchiyomi.data.api
+package com.example.kocchiyomi.data.model
 
 import com.google.gson.annotations.SerializedName
 
