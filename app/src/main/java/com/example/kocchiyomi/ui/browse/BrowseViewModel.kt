@@ -4,9 +4,10 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.kocchiyomi.data.Mangadex
 import com.example.kocchiyomi.data.api.ApiFeedResponse
+import com.example.kocchiyomi.database.MangaDao
 import kotlinx.coroutines.launch
 
-class BrowseViewModel : ViewModel() {
+class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
 
     private val response = MutableLiveData<ApiFeedResponse>()
 
@@ -22,13 +23,15 @@ class BrowseViewModel : ViewModel() {
 
         }
     }
+
+    fun getLibrary() = mangaDao.getAll()
 }
 
-class BrowseViewModelFactory():ViewModelProvider.Factory{
+class BrowseViewModelFactory(private val mangaDao: MangaDao):ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BrowseViewModel::class.java)) {
-//            @Suppress("UNCHECKED_CAST")
-//            return BrowseViewModel(mangaDao) as T
+            @Suppress("UNCHECKED_CAST")
+            return BrowseViewModel(mangaDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

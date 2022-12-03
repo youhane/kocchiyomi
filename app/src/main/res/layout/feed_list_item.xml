@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="6dp"
+    android:clipToOutline="true"
+    android:background="@drawable/round_outline_8"
     android:id="@+id/feedLayout">
 
     <ImageView
         android:id="@+id/iv_coverImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/sample_image"
         android:foreground="@drawable/darkened_gradient"
-        android:background="@drawable/round_outline_15"
-        android:clipToOutline="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <TextView
@@ -25,11 +29,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingLeft="20dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textSize="12sp"
         android:fontFamily="@font/poppins_semibold"
-        tools:text="Title Name"/>
+        tools:text="Title Name"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_coverImage"
+        app:layout_constraintStart_toStartOf="@+id/iv_coverImage"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,24 +1,27 @@
 package com.example.kocchiyomi.adapters
 
-//import android.content.Context
-//import android.content.Intent
-//import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-//import androidx.core.content.res.ResourcesCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.kocchiyomi.R
 import com.example.kocchiyomi.data.model.Manga
 
+class MangaListAdapter : RecyclerView.Adapter<MangaListAdapter.MangaListViewHolder>(){
 
-class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.MangaListViewHolder>() {
-    private var mangaList: List<Manga> = emptyList()
-//    private var context: Context? = null
+    var mangaList: List<Manga> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    //    private var context: Context? = null
     var onClick:((Manga) -> Unit)? = null
     private var libraryIds: List<String> = emptyList()
 
@@ -26,6 +29,7 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.MangaListView
         val view: View =
             LayoutInflater.from(parent.context).
             inflate(R.layout.feed_list_item, parent, false)
+        view.clipToOutline = true
         return MangaListViewHolder(view)
     }
 
@@ -41,7 +45,7 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.MangaListView
 //        } else { holder.iv_coverImage.setForeground(null) }
         holder.tv_titleName.text = mangaList[position].attributes.title.en
         holder.parentLayout.setOnClickListener {
-           onClick?.invoke(mangaList[position])
+            onClick?.invoke(mangaList[position])
         }
     }
 
@@ -52,7 +56,7 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.MangaListView
     inner class MangaListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var iv_coverImage: ImageView
         var tv_titleName: TextView
-        var parentLayout: RelativeLayout
+        var parentLayout: ConstraintLayout
 
         init {
             iv_coverImage = itemView.findViewById(R.id.iv_coverImage)
