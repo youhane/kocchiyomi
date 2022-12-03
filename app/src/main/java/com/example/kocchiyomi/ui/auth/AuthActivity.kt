@@ -10,16 +10,24 @@ import androidx.fragment.app.add
 import androidx.fragment.app.replace
 import androidx.fragment.app.commit
 import com.example.kocchiyomi.R
+import com.example.kocchiyomi.databinding.ActivityAuthBinding
+import com.example.kocchiyomi.databinding.ActivityMainBinding
+
 
 class AuthActivity : AppCompatActivity(R.layout.activity_auth), CallbackFragment {
+    private lateinit var binding: ActivityAuthBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityAuthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         if (savedInstanceState == null) {
             addFragment()
         }
     }
 
-    public fun replaceFragment() {
+    private fun replaceFragment() {
         Log.d("g", "dedd")
         val fragment: LoginFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_auth_container_view) as LoginFragment
@@ -30,7 +38,7 @@ class AuthActivity : AppCompatActivity(R.layout.activity_auth), CallbackFragment
         }
     }
 
-    public fun addFragment() {
+    private fun addFragment() {
         val fragment:RegisterFragment = RegisterFragment()
         fragment.setCallbackFragment(this)
         supportFragmentManager.commit {
