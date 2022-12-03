@@ -6,6 +6,7 @@ Mobile Programming Project made with Kotlin
 - Jason Sebastian Sulistyawan - 2401960675
 - Kelvin Julian - 2401962213
 - Martinus Grady Naftali - 2401962453
+=======
 
 ### Class
 LB08
