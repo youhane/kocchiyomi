@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.auth.LoginActivity"
     android:paddingHorizontal="20dp"
     android:background="@color/colorPrimary">
 

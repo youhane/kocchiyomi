@@ -3,23 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
-
+    app:startDestination="@id/libraryFragment">
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.kocchiyomi.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
+        android:id="@+id/libraryFragment"
+        android:name="com.example.kocchiyomi.ui.library.LibraryFragment"
+        android:label="@string/library"
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_libraryFragment_to_browseFragment"
+            app:destination="@id/browseFragment" />
+        <action
+            android:id="@+id/action_libraryFragment_to_mangaInfoFragment"
+            app:destination="@id/mangaInfoFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.kocchiyomi.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/browseFragment"
+        android:name="com.example.kocchiyomi.ui.browse.BrowseFragment"
+        android:label="@string/browse"
+        tools:layout="@layout/fragment_browse" >
+        <action
+            android:id="@+id/action_browseFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_browseFragment_to_mangaInfoFragment"
+            app:destination="@id/mangaInfoFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.kocchiyomi.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/historyFragment"
+        android:name="com.example.kocchiyomi.ui.HistoryFragment"
+        android:label="@string/history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/mangaInfoFragment"
+        android:name="com.example.kocchiyomi.ui.mangaInfo.MangaInfoFragment"
+        android:label="fragment_manga_info"
+        tools:layout="@layout/fragment_manga_info" >
+        <action
+            android:id="@+id/action_mangaInfoFragment_to_readerFragment"
+            app:destination="@id/readerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="com.example.kocchiyomi.ui.reader.ReaderFragment"
+        android:label="fragment_reader"
+        tools:layout="@layout/fragment_reader" />
 </navigation>
