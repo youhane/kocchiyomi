@@ -10,11 +10,24 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="actionBarStyle">@style/BlackActionBar</item>
     </style>
 
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="BlackActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/colorPrimary</item>
+        <item name="android:height">@dimen/actionbar_height</item>
+        <item name="height">@dimen/actionbar_height</item>
+        <item name="titleTextStyle">@style/BlackActionBarTitleTextStyle</item>
+    </style>
+
+    <style name="BlackActionBarTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
 </resources>
