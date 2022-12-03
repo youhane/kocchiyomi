@@ -7,8 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.kocchiyomi.R
+import com.example.kocchiyomi.databinding.FragmentBrowseBinding
 
 class BrowseFragment : Fragment() {
+    private lateinit var binding: FragmentBrowseBinding
+
+
 
     companion object {
         fun newInstance() = BrowseFragment()
@@ -20,13 +24,12 @@ class BrowseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_browse, container, false)
+        binding = FragmentBrowseBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BrowseViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)  {
+
     }
 
 }

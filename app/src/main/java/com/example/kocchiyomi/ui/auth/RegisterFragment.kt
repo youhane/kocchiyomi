@@ -5,33 +5,45 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.kocchiyomi.ui.auth.AuthActivity
 import com.example.kocchiyomi.MainActivity
 import com.example.kocchiyomi.R
+import com.example.kocchiyomi.databinding.FragmentLoginBinding
+import com.example.kocchiyomi.databinding.FragmentRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
+    private lateinit var binding: FragmentRegisterBinding
     private var callbackFragment: CallbackFragment? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tv_signin.setOnClickListener {
+        binding.tvSignin.setOnClickListener {
             Log.d("d", "clcik")
             callbackFragment?.changeFragment()
         }
 
-        btn_signup.setOnClickListener {
-            val email: String = et_signup_email.text.toString().trim { it <= ' ' }
-//            val username: String = et_signup_email.text.toString().trim { it <= ' '}
-            val password: String = et_signup_password.text.toString().trim { it <= ' ' }
-            val confirmPassword: String = et_signup_password.text.toString().trim { it <= ' ' }
+        binding.btnSignup.setOnClickListener {
+            val email: String = binding.etSignupEmail.text.toString().trim { it <= ' ' }
+
+            val password: String = binding.etSignupPassword.text.toString().trim { it <= ' ' }
+            val confirmPassword: String = binding.etSignupConfirmPassword.text.toString().trim { it <= ' ' }
 
             when {
 //                TextUtils.isEmpty(username) -> {

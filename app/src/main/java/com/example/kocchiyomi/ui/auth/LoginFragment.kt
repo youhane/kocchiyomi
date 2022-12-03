@@ -1,29 +1,40 @@
 package com.example.kocchiyomi.ui.auth
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.kocchiyomi.MainActivity
 import com.example.kocchiyomi.R
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.fragment_login.*
+import com.example.kocchiyomi.databinding.ActivityMainBinding
+import com.example.kocchiyomi.databinding.FragmentLoginBinding
 
 
-class LoginFragment : Fragment(R.layout.fragment_register) {
+class LoginFragment : Fragment() {
+    private lateinit var binding: FragmentLoginBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        tv_singup.setOnClickListener {
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding.tvSingup.setOnClickListener {
 
         }
 
-        btn_signin.setOnClickListener {
-            val email: String = et_signin_email.text.toString().trim { it <= ' ' }
-            val password: String = et_signin_password.text.toString().trim { it <= ' ' }
+        binding.btnSignin.setOnClickListener {
+            val email: String = binding.etSigninEmail.text.toString().trim { it <= ' ' }
+            val password: String = binding.etSigninPassword.text.toString().trim { it <= ' ' }
 
             when {
 //                TextUtils.isEmpty(username) -> {
@@ -67,5 +78,6 @@ class LoginFragment : Fragment(R.layout.fragment_register) {
             }
 
         }
+        super.onViewCreated(view, savedInstanceState)
     }
 }

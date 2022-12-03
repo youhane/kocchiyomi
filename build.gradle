@@ -7,6 +7,7 @@ buildscript {
         retrofit_version = "2.9.0"
         retrofitConverter_version = "2.5.0"
         gson_version = "2.9.0"
+        room_version = "2.4.3"
 
     }
     repositories {

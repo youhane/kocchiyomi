@@ -7,9 +7,11 @@
     android:id="@+id/browseFragment"
     tools:context=".ui.browse.BrowseFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/explore_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Browse" />
+        tools:listitem="@layout/feed_list_item"
+        tools:itemCount="3" />
 
 </FrameLayout>
