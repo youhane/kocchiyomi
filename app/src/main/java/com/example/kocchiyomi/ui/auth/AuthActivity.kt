@@ -11,10 +11,9 @@ import androidx.fragment.app.replace
 import androidx.fragment.app.commit
 import com.example.kocchiyomi.R
 import com.example.kocchiyomi.databinding.ActivityAuthBinding
-import com.example.kocchiyomi.databinding.ActivityMainBinding
 
 
-class AuthActivity : AppCompatActivity(R.layout.activity_auth), CallbackFragment {
+class AuthActivity : AppCompatActivity(), CallbackFragment {
     private lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
