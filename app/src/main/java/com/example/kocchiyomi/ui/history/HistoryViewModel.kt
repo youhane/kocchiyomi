@@ -1,4 +1,4 @@
-package com.example.kocchiyomi.ui
+package com.example.kocchiyomi.ui.history
 
 import androidx.lifecycle.ViewModel
 

@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.kocchiyomi.ui.HistoryFragment"
+        android:name="com.example.kocchiyomi.ui.history.HistoryFragment"
         android:label="@string/history"
         tools:layout="@layout/fragment_history" />
     <fragment
