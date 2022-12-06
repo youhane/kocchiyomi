@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kocchiyomi.KocchiyomiApplication
+import com.example.kocchiyomi.R
 import com.example.kocchiyomi.adapters.MangaListAdapter
 import com.example.kocchiyomi.databinding.FragmentBrowseBinding
 
@@ -37,7 +40,8 @@ class BrowseFragment : Fragment() {
 //        adapter.libraryIds = viewModel.getLibrary().map { it.id }
 
         adapter.onClick = {
-
+            val bundle = bundleOf( Pair("manga", it), Pair("name", it.attributes.title.en) )
+            Navigation.findNavController(view).navigate(R.id.action_browseFragment_to_mangaInfoFragment, bundle)
         }
 
         binding.browseRecyclerView.adapter = adapter

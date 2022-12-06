@@ -8,94 +8,148 @@
     tools:context=".ui.mangaInfo.MangaInfoFragment"
     android:background="@color/colorPrimary">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/iv_manga_cover_image"
-        android:layout_width="145dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:background="@drawable/round_outline_8"
-        android:clipToOutline="true"
-        app:layout_constraintDimensionRatio="1:1.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/sample_image"/>
-
-    <TextView
-        android:id="@+id/tv_manga_name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:maxWidth="200dp"
-        android:textSize="24sp"
-
-        app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
-        app:layout_constraintTop_toTopOf="@+id/iv_manga_cover_image"
-        tools:text="Title Manga" />
-
-    <Button
-        android:id="@+id/add_to_library_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="lib"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintWidth_max="200dp"
-        app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
-        app:layout_constraintTop_toBottomOf="@+id/tv_manga_name_text" />
-
-    <Button
-        android:id="@+id/remove_from_library_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="lib"
-        android:visibility="gone"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintWidth_max="200dp"
-        app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
-        app:layout_constraintTop_toBottomOf="@+id/tv_manga_name_text" />
-
-    <TextView
-        android:id="@+id/tv_manga_description_text"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/iv_manga_cover_image"
+        android:layout_height="wrap_content">
 
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="16dp"
+        <ImageView
+            android:id="@+id/iv_manga_cover_image"
+            android:layout_width="145dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_outline_8"
+            android:clipToOutline="true"
+            android:orientation="horizontal"
+            app:layout_constraintDimensionRatio="1:1.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/sample_image" />
 
-        android:textSize="20sp"
-        tools:text="Chapter des name" />
+        <TextView
+            android:id="@+id/tv_manga_name_text"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_default="wrap"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:paddingRight="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxWidth="170dp"
+            android:maxLines="2"
+            android:textColor="@color/colorText"
+            android:textSize="24sp"
 
-    <TextView
-        android:id="@+id/tv_chapter_count"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_manga_description_text"
+            app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_manga_cover_image"
+            tools:text="Title Manga Title Manga Title Manga Title Manga" />
 
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="16dp"
+        <TextView
+            android:id="@+id/tv_manga_author_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:maxWidth="200dp"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_manga_name_text"
+            tools:text="Author Manga" />
 
-        android:textSize="20sp"
-        tools:text="32"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_to_library"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/chapters_list"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tv_chapter_count"-->
-<!--        tools:listitem="@layout/chapter_item"-->
-<!--        tools:itemCount="9"/>-->
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ic_favorite_border_24"
+            android:backgroundTint="@color/colorTextSecondary"
+            app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_manga_author_text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_add_to_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins_medium"
+            android:maxWidth="200dp"
+            android:text="Add to library"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_library" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_remove_from_library"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ic_favorite_24"
+            android:backgroundTint="@color/white"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_manga_author_text"
+            app:layout_constraintWidth_max="200dp" />
+
+        <TextView
+            android:id="@+id/tv_remove_from_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins_medium"
+            android:maxWidth="200dp"
+            android:text="In library"
+            android:textColor="@color/colorText"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/iv_manga_cover_image"
+            app:layout_constraintTop_toBottomOf="@+id/btn_remove_from_library" />
+
+        <TextView
+            android:id="@+id/tv_manga_description_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_light"
+
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+
+            app:layout_constraintTop_toBottomOf="@+id/iv_manga_cover_image"
+            tools:text="Manga description" />
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/tv_chapter_count"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:layout_constraintTop_toBottomOf="@id/tv_manga_description_text"-->
+
+        <!--        android:layout_marginTop="20dp"-->
+        <!--        android:layout_marginHorizontal="16dp"-->
+
+        <!--        android:textSize="20sp"-->
+        <!--        tools:text="32"/>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chapter_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_manga_description_text"
+            tools:itemCount="9"
+            tools:listitem="@layout/chapter_list_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -13,6 +13,8 @@
     <color name="colorSecondary">#222222</color>
     <color name="colorAccent">#54FFF5</color>
     <color name="colorAccentSecondary">#FFD669</color>
+    <color name="colorAccentDanger">#FE6A77</color>
     <color name="colorText">#FFFFFFFF</color>
     <color name="colorTextSecondary">#353535</color>
+
 </resources>

@@ -1,8 +1,8 @@
 package com.example.kocchiyomi.data.model
 
-data class CoverRelationship(
+data class MangaRelationship(
     val id: String,
     val type: String,
-    val attributes: CoverAttribute?,
+    val attributes: RelationshipAttributes?,
     val related: String?
 )

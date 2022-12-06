@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/mangaInfoFragment"
         android:name="com.example.kocchiyomi.ui.mangaInfo.MangaInfoFragment"
-        android:label="fragment_manga_info"
+        android:label="@string/manga_info"
         tools:layout="@layout/fragment_manga_info" >
         <action
             android:id="@+id/action_mangaInfoFragment_to_readerFragment"
