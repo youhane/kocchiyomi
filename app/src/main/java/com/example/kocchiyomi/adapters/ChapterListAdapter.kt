@@ -30,10 +30,15 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
     }
 
     override fun onBindViewHolder(holder: ChapterListViewHolder, position: Int) {
+        var chapterTitle = ""
+        if (chapterList[position].attributes.title != null && chapterList[position].attributes.title?.isNotEmpty() == true){
+                chapterTitle = "-" + chapterList[position].attributes.title
+        }
+
         holder.tv_chapter_title.text = holder.itemView.resources.getString(
             R.string.chapter_title,
             chapterList[position].attributes.chapter,
-            chapterList[position].attributes.title
+            chapterTitle
         )
 
         val scanGroupRel: ScanlationGroupRelationship? =
