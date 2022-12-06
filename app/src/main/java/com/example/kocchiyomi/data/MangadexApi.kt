@@ -28,10 +28,10 @@ interface MangadexApi {
     suspend fun getMangas(
         @Query("ids[]") ids: List<String>? = null,
         @Query("limit") limit: Int? = null,
-        @Query("includes[]") includes: List<String>? = listOf("cover_art")
+        @Query("includes[]") includes: List<String>? = listOf("cover_art", "author")
     ): ApiFeedResponse
 
-    @GET("/manga/{manga_id}?includes[]=cover_art")
+    @GET("/manga/{manga_id}?includes[]=cover_art&includes[]=author")
     suspend fun getManga(@Path("manga_id") id: String): ApiMangaResponse
 
     @GET("/manga/{manga_id}/feed?translatedLanguage[]=en&limit=500&order%5Bvolume%5D=asc&order%5Bchapter%5D=asc&includes[]=scanlation_group")
