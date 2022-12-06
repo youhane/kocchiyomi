@@ -35,9 +35,14 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
                 chapterTitle = "-" + chapterList[position].attributes.title
         }
 
+        var chapternumber = "X"
+        if (chapterList[position].attributes.chapter != null && chapterList[position].attributes.chapter?.isNotEmpty() == true){
+            chapternumber = chapterList[position].attributes.chapter.toString()
+        }
+
         holder.tv_chapter_title.text = holder.itemView.resources.getString(
             R.string.chapter_title,
-            chapterList[position].attributes.chapter,
+            chapternumber,
             chapterTitle
         )
 
@@ -46,7 +51,7 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
 
         var scanGroup = ""
         if (scanGroupRel != null)
-            scanGroup = scanGroupRel.attributes.name
+            scanGroup = "• " + scanGroupRel.attributes.name
 
         holder.tv_chapter_extra_info.text = holder.itemView.resources.getString(
             R.string.chapter_extra,
