@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.kocchiyomi.KocchiyomiApplication
@@ -15,6 +16,7 @@ import com.example.kocchiyomi.adapters.ChapterListAdapter
 import com.example.kocchiyomi.data.model.Manga
 import com.example.kocchiyomi.databinding.FragmentMangaInfoBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 class MangaInfoFragment : Fragment() {
     private lateinit var manga: Manga
@@ -64,6 +66,13 @@ class MangaInfoFragment : Fragment() {
 //        }
 
         val adapter = ChapterListAdapter()
+
+        binding.mangaInfoFragment.setOnRefreshListener {
+            viewModel.getChapters(manga.id)
+            binding.mangaInfoFragment.isRefreshing = false
+        }
+
+
         adapter.onClick = {
 //            val bundle = bundleOf( Pair("chapter_id", it.id) )
 //            Navigation.findNavController(view).navigate(R.id.action_mangaInfoFragment_to_readerFragment, bundle)
