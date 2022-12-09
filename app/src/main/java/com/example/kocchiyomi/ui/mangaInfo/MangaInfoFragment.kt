@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -101,6 +102,11 @@ class MangaInfoFragment : Fragment() {
     override fun onResume() {
         (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.GONE
         super.onResume()
+    }
+
+    override fun onStop() {
+        (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.VISIBLE
+        super.onStop()
     }
 
 }

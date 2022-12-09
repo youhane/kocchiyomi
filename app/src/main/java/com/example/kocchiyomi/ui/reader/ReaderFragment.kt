@@ -59,8 +59,15 @@ class ReaderFragment : Fragment() {
     }
 
     override fun onResume() {
+        (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.GONE
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
         super.onResume()
+    }
+
+    override fun onStop() {
+        (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.VISIBLE
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        super.onStop()
     }
 
 }
