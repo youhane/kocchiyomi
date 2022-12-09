@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.kocchiyomi.KocchiyomiApplication
@@ -72,10 +74,9 @@ class MangaInfoFragment : Fragment() {
             binding.mangaInfoFragment.isRefreshing = false
         }
 
-
         adapter.onClick = {
-//            val bundle = bundleOf( Pair("chapter_id", it.id) )
-//            Navigation.findNavController(view).navigate(R.id.action_mangaInfoFragment_to_readerFragment, bundle)
+            val bundle = bundleOf( Pair("chapter_id", it.id) )
+            Navigation.findNavController(view).navigate(R.id.action_mangaInfoFragment_to_readerFragment, bundle)
         }
         binding.rvChapterList.adapter = adapter
 

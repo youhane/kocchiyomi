@@ -58,6 +58,8 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
             SimpleDateFormat("dd/MM/yyyy").format(chapterList[position].attributes.publishAt),
             scanGroup
         )
+
+        holder.itemView.setOnClickListener { onClick?.invoke(chapterList[position]) }
     }
 
     override fun getItemCount(): Int {

@@ -33,8 +33,8 @@
 
             <TextView
                 android:id="@+id/tv_manga_name_text"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_default="wrap"
+                android:layout_width="wrap_content"
+                app:layout_constrainedWidth="true"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:paddingRight="20dp"

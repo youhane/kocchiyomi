@@ -10,6 +10,8 @@
     <string name="browse">Browse</string>
     <string name="history">History</string>
     <string name="manga_info">Manga Info</string>
+    <string name="error_image">Error when load image. Please try again</string>
+    <string name="retry">Retry</string>
 
     <string name="chapter_title" translatable="false">Ch.%1$s %2$s</string>
     <string name="chapter_extra" translatable="false">%1$s %2$s</string>

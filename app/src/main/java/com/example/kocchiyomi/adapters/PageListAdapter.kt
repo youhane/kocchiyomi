@@ -1,43 +1,72 @@
 package com.example.kocchiyomi.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.kocchiyomi.R
+import com.example.kocchiyomi.data.api.ApiReaderResponse
+import com.example.kocchiyomi.databinding.ReaderListItemBinding
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
+import android.widget.ImageView
 
-class PageListAdapter: RecyclerView.Adapter<PageListAdapter.PageListViewHolder>() {
+class PageListAdapter(): RecyclerView.Adapter<PageListAdapter.PageListViewHolder>() {
     var pageList: List<String> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-//    lateinit var apiResponse: Api
+    lateinit var apiResponse: ApiReaderResponse
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageListViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.page_list_item, parent, false)
+        val adapterLayout = ReaderListItemBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
         return PageListViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: PageListViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.loadImage("${apiResponse.baseUrl}/data-saver/${apiResponse.chapterFiles.hash}/${pageList[position]}")
     }
 
     override fun getItemCount(): Int {
         return pageList.size
     }
 
-    inner class PageListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-//        var tv_chapter_title: TextView
-//        var tv_chapter_extra_info: TextView
+    inner class PageListViewHolder(private val binding: ReaderListItemBinding): RecyclerView.ViewHolder(binding.root){
+
 
         init{
-//            tv_chapter_title = itemView.findViewById(R.id.tv_chapter_title)
-//            tv_chapter_extra_info = itemView.findViewById(R.id.tv_chapter_extra_info)
+            binding.btnRetry.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    loadImage("${apiResponse.baseUrl}/data-saver/${apiResponse.chapterFiles.hash}/${pageList[position]}")
+                }
+            }
+        }
+
+        fun loadImage(imageUrl: String) = binding.run {
+            binding.ivImagePage.load(imageUrl) {
+                listener(
+                    onSuccess = { _, result ->
+                        groupError.isVisible = false
+                        progressBar.isVisible = false
+                    },
+                    onError = { _, result ->
+                        groupError.isVisible = true
+                        progressBar.isVisible = false
+                    },
+                    onStart = {
+                        groupError.isVisible = false
+                        progressBar.isVisible = true
+                    }
+                )
+            }
         }
     }
 
