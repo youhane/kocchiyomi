@@ -24,14 +24,14 @@ class AuthActivity : AppCompatActivity(), CallbackFragment {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_auth_container_view) as NavHostFragment
 
         navController = navHostFragment.navController
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<LoginFragment>(R.id.nav_host_fragment_container)
+                add<RegisterFragment>(R.id.fragment_auth_container_view)
             }
         }
 //        if (savedInstanceState == null) {
@@ -40,7 +40,6 @@ class AuthActivity : AppCompatActivity(), CallbackFragment {
     }
 
     private fun replaceFragment() {
-        Log.d("g", "dedd")
         val fragment: LoginFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_auth_container_view) as LoginFragment
         supportFragmentManager.commit {
