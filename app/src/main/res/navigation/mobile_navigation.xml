@@ -47,4 +47,25 @@
         android:name="com.example.kocchiyomi.ui.reader.ReaderFragment"
         android:label="fragment_reader"
         tools:layout="@layout/fragment_reader" />
+    <fragment
+        android:id="@+id/loginFragment3"
+        android:name="com.example.kocchiyomi.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment3_to_libraryFragment"
+            app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_loginFragment3_to_registerFragment2"
+            app:destination="@id/registerFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment2"
+        android:name="com.example.kocchiyomi.ui.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment2_to_loginFragment3"
+            app:destination="@id/loginFragment3" />
+    </fragment>
 </navigation>

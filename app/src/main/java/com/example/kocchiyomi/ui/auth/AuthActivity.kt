@@ -9,21 +9,34 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.replace
 import androidx.fragment.app.commit
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.kocchiyomi.R
 import com.example.kocchiyomi.databinding.ActivityAuthBinding
 
 
 class AuthActivity : AppCompatActivity(), CallbackFragment {
     private lateinit var binding: ActivityAuthBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+
+        navController = navHostFragment.navController
+
         if (savedInstanceState == null) {
-            addFragment()
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<LoginFragment>(R.id.nav_host_fragment_container)
+            }
         }
+//        if (savedInstanceState == null) {
+//            addFragment()
+//        }
     }
 
     private fun replaceFragment() {
