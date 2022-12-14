@@ -1,46 +1,67 @@
 package com.example.kocchiyomi
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kocchiyomi.databinding.ActivityMainBinding
+import com.example.kocchiyomi.utils.AuthUtil
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import androidx.lifecycle.lifecycleScope
+import arrow.core.computations.result
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.appBarMain.toolbar)
+
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
         val navHostFragment = supportFragmentManager.findFragmentById(androidx.navigation.fragment.R.id.nav_host_fragment_container) as NavHostFragment
 
         navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration
-            .Builder(
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
                 R.id.libraryFragment,
                 R.id.browseFragment,
-                R.id.historyFragment)
-            .build()
+                R.id.historyFragment
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
 
-        binding.bottomNav.setupWithNavController(navController)
-        binding.bottomNav.setOnItemReselectedListener {  }
-//        val userId = intent.getStringExtra("user_id")
-//        val emailId = intent.getStringExtra("email_id")
-//
-//        tv_user_id.text = "_User ID :: $userId"
-//        tv_email_id.text = "Email ID :: $emailId"
-//
+        binding.appBarMain.bottomNav.setupWithNavController(navController)
+        binding.appBarMain.bottomNav.setOnItemReselectedListener {  }
+
+        lifecycleScope.launch {
+            setDrawerHeader()
+        }
+
+
 //        btn_signout.setOnClickListener {
 //            FirebaseAuthData.getInstance().signOut()
 //
@@ -49,8 +70,26 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        return false
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        return  navController.navigateUp() || super.onSupportNavigateUp()
+        val navController = findNavController(R.id.nav_host_fragment_container)
+        return  navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private suspend fun setDrawerHeader() {
+        val navigationView : NavigationView = findViewById(R.id.nav_view)
+        val header = navigationView.getHeaderView(0)
+        val tvHeaderUsername = header.findViewById<TextView>(R.id.tv_header_username)
+        val tvHeaderEmail = header.findViewById<TextView>(R.id.tv_header_email)
+
+        if (AuthUtil.firebaseAuthInstance.currentUser != null) {
+            val currentUser = AuthUtil.getUserDetail()
+            tvHeaderUsername.text = currentUser.userName
+            tvHeaderEmail.text = currentUser.email
+        }
     }
 
 }

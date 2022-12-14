@@ -29,5 +29,6 @@
     <string name="password_does_not_match">Password does not match</string>
     <string name="check_username_email_retry">Check username, email, or password, then retry</string>
     <string name="check_email_retry">Check email, or password, then retry</string>
+    <string name="log_out">Log out</string>
 
 </resources>

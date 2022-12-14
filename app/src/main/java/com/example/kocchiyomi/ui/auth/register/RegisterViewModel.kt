@@ -25,7 +25,7 @@ class RegisterViewModel: ViewModel(){
     private val passwordMatch = MutableLiveData<Boolean>()
     private val confirmPasswordMatch = MutableLiveData<Boolean>()
 
-    fun storeUser(user: User) {
+    private fun storeUser(user: User) {
         val db = FirestoreHelper.firestoreInstance
         user.uid?.let {
             uid -> db.collection("users").document(uid).set(user).addOnSuccessListener {
