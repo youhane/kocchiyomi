@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
 //        val userId = intent.getStringExtra("user_id")
 //        val emailId = intent.getStringExtra("email_id")
 //
-//        tv_user_id.text = "User ID :: $userId"
+//        tv_user_id.text = "_User ID :: $userId"
 //        tv_email_id.text = "Email ID :: $emailId"
 //
 //        btn_signout.setOnClickListener {
-//            FirebaseAuth.getInstance().signOut()
+//            FirebaseAuthData.getInstance().signOut()
 //
 //            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
 //            finish()

@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.auth.AuthActivity">
 
+
+
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_auth_container_view"
+        app:navGraph="@navigation/auth_navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
