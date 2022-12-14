@@ -137,7 +137,7 @@ class LoginFragment : Fragment() {
         val email: String = binding.etSigninEmail.text.toString().trim { it <= ' ' }
         val password: String = binding.etSigninPassword.text.toString().trim { it <= ' ' }
 
-        if (binding.tilSigninEmail.isErrorEnabled || binding.tilSigninPassword.isErrorEnabled != null) {
+        if (binding.tilSigninEmail.isErrorEnabled || binding.tilSigninPassword.isErrorEnabled) {
             (activity as AuthActivity).toast(R.string.check_email_retry, false)
         }
          else {

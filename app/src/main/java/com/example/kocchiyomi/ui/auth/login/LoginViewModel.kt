@@ -24,6 +24,8 @@ class LoginViewModel: ViewModel() {
 
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             loadingState.value = LoadState.SUCCESS
+            navigateToHomeMutableLiveData.value = true
+            switchToRegisterMutableLiveData.value = false
         }.addOnFailureListener {
             ErrorMessage.errorMessage = it.message
             loadingState.value = LoadState.FAILURE
@@ -41,7 +43,7 @@ class LoginViewModel: ViewModel() {
     }
 
     fun isPasswordMatch(it: String): LiveData<Boolean>  {
-        passwordMatch.value = it.length > 6
+        passwordMatch.value = it.length >= 6
         return passwordMatch
     }
 
