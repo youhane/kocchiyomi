@@ -1,5 +1,6 @@
 package com.example.kocchiyomi
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import androidx.lifecycle.lifecycleScope
 import arrow.core.computations.result
+import com.example.kocchiyomi.ui.auth.AuthActivity
 import kotlinx.coroutines.launch
 
 
@@ -61,13 +63,8 @@ class MainActivity : AppCompatActivity() {
             setDrawerHeader()
         }
 
+        setDrawerBody()
 
-//        btn_signout.setOnClickListener {
-//            FirebaseAuthData.getInstance().signOut()
-//
-//            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-//            finish()
-//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,15 +78,34 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun setDrawerHeader() {
         val navigationView : NavigationView = findViewById(R.id.nav_view)
-        val header = navigationView.getHeaderView(0)
-        val tvHeaderUsername = header.findViewById<TextView>(R.id.tv_header_username)
-        val tvHeaderEmail = header.findViewById<TextView>(R.id.tv_header_email)
+        val headerNav = navigationView.getHeaderView(0)
+        val tvHeaderUsername = headerNav.findViewById<TextView>(R.id.tv_header_username)
+        val tvHeaderEmail = headerNav.findViewById<TextView>(R.id.tv_header_email)
 
         if (AuthUtil.firebaseAuthInstance.currentUser != null) {
             val currentUser = AuthUtil.getUserDetail()
             tvHeaderUsername.text = currentUser.userName
             tvHeaderEmail.text = currentUser.email
         }
+    }
+
+    private fun setDrawerBody() {
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val menuNav = navigationView.menu
+        val navLogout = menuNav.findItem(R.id.nav_logout)
+
+        navLogout.setOnMenuItemClickListener {
+            AuthUtil.firebaseSignOut()
+            navigateToAuth()
+            true
+        }
+    }
+
+    private fun navigateToAuth() {
+        val intent = Intent(this@MainActivity, AuthActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
     }
 
 }

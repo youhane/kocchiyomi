@@ -178,6 +178,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val intent = Intent(activity as AuthActivity, MainActivity::class.java)
         startActivity(intent)
         (activity as AuthActivity)!!.overridePendingTransition(0, 0)
+        (activity as AuthActivity)!!.finish()
     }
 
     private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {

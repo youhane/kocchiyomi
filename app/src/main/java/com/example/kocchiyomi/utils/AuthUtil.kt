@@ -21,6 +21,10 @@ object AuthUtil {
         return firebaseAuthInstance.currentUser!!.email
     }
 
+    fun firebaseSignOut() {
+        firebaseAuthInstance.signOut()
+    }
+
     suspend fun getUserDetail(): User {
         var userNameRequest = "default"
         var uidRequest = "default"
