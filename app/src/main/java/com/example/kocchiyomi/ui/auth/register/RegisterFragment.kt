@@ -148,7 +148,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val password: String = binding.etSignupPassword.text.toString().trim { it <= ' ' }
         val confirmPassword: String = binding.etSignupConfirmPassword.text.toString().trim { it <= ' ' }
 
-        if (binding.tilSignupEmail.isErrorEnabled || binding.tilSignupUsername.isErrorEnabled|| binding.tilSignupPassword.isErrorEnabled) {
+        if (binding.etSignupEmail.text.isEmpty() || binding.etSignupUsername.text.isEmpty() || binding.etSignupPassword.text.isEmpty() || binding.etSignupConfirmPassword.text.isEmpty() || binding.tilSignupEmail.isErrorEnabled || binding.tilSignupUsername.isErrorEnabled|| binding.tilSignupPassword.isErrorEnabled) {
                 (activity as AuthActivity).toast(R.string.check_username_email_retry, false)
         }
         else {
