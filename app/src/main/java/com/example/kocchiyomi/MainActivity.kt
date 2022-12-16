@@ -2,6 +2,7 @@ package com.example.kocchiyomi
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
@@ -82,10 +83,16 @@ class MainActivity : AppCompatActivity() {
         val tvHeaderUsername = headerNav.findViewById<TextView>(R.id.tv_header_username)
         val tvHeaderEmail = headerNav.findViewById<TextView>(R.id.tv_header_email)
 
+        // bikin versi viewmodelnya
         if (AuthUtil.firebaseAuthInstance.currentUser != null) {
-            val currentUser = AuthUtil.getUserDetail()
-            tvHeaderUsername.text = currentUser.userName
-            tvHeaderEmail.text = currentUser.email
+            try{
+                val currentUser = AuthUtil.getUserDetail()
+                tvHeaderUsername.text = currentUser.userName
+                tvHeaderEmail.text = currentUser.email
+            } catch (e: Exception){
+                Log.w("Firebase Auth Exception", e.toString())
+            }
+
         }
     }
 

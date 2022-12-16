@@ -214,6 +214,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_back_primary_15"
                 android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/colorPrimary"
                 android:text="@string/sign_up"
                 android:textAllCaps="false"
                 tools:ignore="DuplicateSpeakableTextCheck"
