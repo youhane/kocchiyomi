@@ -15,7 +15,7 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
 
     val chapters: LiveData<List<Chapter>> = _chapters
 
-    fun getChapters(id: String){
+    fun getChapters(id: String) {
         viewModelScope.launch {
             try {
                 chaptersResponse = Mangadex.retrofitService.getChapters(id)
@@ -26,7 +26,16 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
             }
         }
     }
-//    fun getById(id: String) = mangaDao.getById(id)
+    fun saveToLibrary(id: String) {
+
+    }
+
+    fun removeFromLibrary(id: String) {
+
+    }
+
+    fun getById(id: String) = mangaDao.getById(id)
+
 //    fun saveToLibrary(id: String) = mangaDao.save(MangaEntity(id))
 //    fun delete(id: String) = mangaDao.delete(id)
 }

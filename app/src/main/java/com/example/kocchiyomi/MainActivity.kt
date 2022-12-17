@@ -73,9 +73,6 @@ class MainActivity : AppCompatActivity() {
         binding.appBarMain.bottomNav.setupWithNavController(navController)
         binding.appBarMain.bottomNav.setOnItemReselectedListener {  }
 
-        lifecycleScope.launch {
-
-        }
         setDrawerHeader()
         setDrawerBody()
 

@@ -17,6 +17,7 @@ import com.example.kocchiyomi.adapters.PageListAdapter
 import com.example.kocchiyomi.databinding.FragmentMangaInfoBinding
 import com.example.kocchiyomi.databinding.FragmentReaderBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ReaderFragment : Fragment() {
     private lateinit var binding: FragmentReaderBinding
@@ -44,16 +45,21 @@ class ReaderFragment : Fragment() {
         val adapter = PageListAdapter()
         val orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        binding.pagerView.adapter = adapter
-        binding.pagerView.orientation = orientation
+        val pagerView = binding.pagerView
+
+        pagerView.adapter = adapter
+        pagerView.orientation = orientation
 
         viewModel.response.observe(viewLifecycleOwner){
                 response ->
-            (binding.pagerView.adapter as PageListAdapter).apiResponse = response
-            (binding.pagerView.adapter as PageListAdapter).pageList = response.chapterFiles.dataSaver
-            (binding.pagerView.adapter as PageListAdapter).notifyDataSetChanged()
+            (pagerView.adapter as PageListAdapter).apiResponse = response
+            (pagerView.adapter as PageListAdapter).pageList = response.chapterFiles.dataSaver
+            (pagerView.adapter as PageListAdapter).notifyDataSetChanged()
         }
-
+        val tabLayout = binding.tabLayout
+        TabLayoutMediator(tabLayout,pagerView ) { tab, position ->
+            tab.text = (position + 1).toString()
+        }.attach()
 
         super.onViewCreated(view, savedInstanceState)
     }

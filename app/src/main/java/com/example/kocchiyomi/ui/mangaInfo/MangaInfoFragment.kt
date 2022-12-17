@@ -48,7 +48,7 @@ class MangaInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btnAddToLibrary.setOnClickListener {
-//            viewModel.saveToLibrary(manga.id)
+            viewModel.saveToLibrary(manga.id)
             binding.btnAddToLibrary.visibility = View.GONE
             binding.tvAddToLibrary.visibility = View.GONE
             binding.btnRemoveFromLibrary.visibility = View.VISIBLE
@@ -56,17 +56,17 @@ class MangaInfoFragment : Fragment() {
         }
 
         binding.btnRemoveFromLibrary.setOnClickListener {
-//            viewModel.delete(manga.id)
+            viewModel.removeFromLibrary(manga.id)
             binding.btnRemoveFromLibrary.visibility = View.GONE
             binding.tvRemoveFromLibrary.visibility = View.GONE
             binding.btnAddToLibrary.visibility = View.VISIBLE
             binding.tvAddToLibrary.visibility = View.VISIBLE
         }
 
-//        if ( viewModel.getById(manga.id)?.id == manga.id) {
-//            binding.btnRemoveFromLibrary.visibility = View.VISIBLE
-//            binding.btnAddToLibrary.visibility = View.GONE
-//        }
+        if ( viewModel.getById(manga.id)?.id == manga.id) {
+            binding.btnRemoveFromLibrary.visibility = View.VISIBLE
+            binding.btnAddToLibrary.visibility = View.GONE
+        }
 
         val adapter = ChapterListAdapter()
 
