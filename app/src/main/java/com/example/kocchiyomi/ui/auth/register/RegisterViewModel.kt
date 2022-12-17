@@ -97,18 +97,6 @@ class RegisterViewModel: ViewModel(){
 //                getUserNameError(username) === null
 //    }
 
-    class RegisterViewModelFactory(
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return RegisterViewModel() as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-
-
 //    protected val compositeDisposable = CompositeDisposable()
 //
 //    private val stateD = NotNullMutableLiveData(initialState)
@@ -138,4 +126,15 @@ class RegisterViewModel: ViewModel(){
 //    override fun onCleared() {
 //        compositeDisposable.dispose()
 //    }
+}
+
+class RegisterViewModelFactory(
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return RegisterViewModel() as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

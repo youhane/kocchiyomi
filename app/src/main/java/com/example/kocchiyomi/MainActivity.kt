@@ -6,8 +6,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,7 +28,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import androidx.lifecycle.lifecycleScope
 import arrow.core.computations.result
+import com.example.kocchiyomi.adapters.MangaListAdapter
 import com.example.kocchiyomi.ui.auth.AuthActivity
+import com.example.kocchiyomi.ui.browse.BrowseViewModel
+import com.example.kocchiyomi.ui.browse.BrowseViewModelFactory
 import kotlinx.coroutines.launch
 
 
@@ -33,11 +40,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModelFactory()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel.getUserData()
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
@@ -83,16 +96,12 @@ class MainActivity : AppCompatActivity() {
         val tvHeaderUsername = headerNav.findViewById<TextView>(R.id.tv_header_username)
         val tvHeaderEmail = headerNav.findViewById<TextView>(R.id.tv_header_email)
 
-        // bikin versi viewmodelnya
-        if (AuthUtil.firebaseAuthInstance.currentUser != null) {
-            try{
-                val currentUser = AuthUtil.getUserDetail()
-                tvHeaderUsername.text = currentUser.userName
-                tvHeaderEmail.text = currentUser.email
-            } catch (e: Exception){
-                Log.w("Firebase Auth Exception", e.toString())
+        viewModel.userDataResponse.observe(this){
+                response ->
+            run {
+                tvHeaderUsername.text = response.userName
+                tvHeaderEmail.text = response.email
             }
-
         }
     }
 
@@ -102,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         val navLogout = menuNav.findItem(R.id.nav_logout)
 
         navLogout.setOnMenuItemClickListener {
-            AuthUtil.firebaseSignOut()
+            AuthUtil.firebaseSignOut
             navigateToAuth()
             true
         }

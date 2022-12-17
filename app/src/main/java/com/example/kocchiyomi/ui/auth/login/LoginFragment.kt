@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
 
     private val viewModel: LoginViewModel by activityViewModels{
-        LoginViewModel.LoginViewModelFactory()
+        LoginViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

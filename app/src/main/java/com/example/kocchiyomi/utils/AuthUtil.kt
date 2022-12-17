@@ -5,6 +5,7 @@ import com.example.kocchiyomi.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
 
+
 object AuthUtil {
 
     val firebaseAuthInstance: FirebaseAuth by lazy {
@@ -12,16 +13,15 @@ object AuthUtil {
         FirebaseAuth.getInstance()
     }
 
-
-    fun getAuthId(): String {
-        return firebaseAuthInstance.currentUser!!.uid
+    val authId: String  by lazy {
+        firebaseAuthInstance.currentUser!!.uid
     }
 
-    fun getAuthEmail(): String? {
-        return firebaseAuthInstance.currentUser!!.email
+    val authEmail: String by lazy {
+        firebaseAuthInstance.currentUser!!.email.toString()
     }
 
-    fun firebaseSignOut() {
+    val firebaseSignOut by lazy {
         firebaseAuthInstance.signOut()
     }
 
@@ -30,11 +30,11 @@ object AuthUtil {
         var uidRequest = "default"
         var emailRequest = "default"
 
-        uidRequest = getAuthId().toString()
-        emailRequest = getAuthEmail().toString()
+        uidRequest = authId
+        emailRequest = authEmail
 
         val db = FirestoreHelper.firestoreInstance
-        userNameRequest = db.collection("users").document(getAuthId()).get().await().data?.get("userName") as String
+        userNameRequest = db.collection("users").document(authId).get().await().data?.get("userName") as String
 
         return User(uidRequest, userNameRequest, emailRequest)
     }

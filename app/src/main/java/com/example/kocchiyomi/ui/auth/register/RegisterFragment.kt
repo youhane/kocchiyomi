@@ -28,7 +28,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
 
     private val viewModel: RegisterViewModel by activityViewModels{
-        RegisterViewModel.RegisterViewModelFactory()
+        RegisterViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
