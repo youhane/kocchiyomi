@@ -74,9 +74,9 @@ class MainActivity : AppCompatActivity() {
         binding.appBarMain.bottomNav.setOnItemReselectedListener {  }
 
         lifecycleScope.launch {
-            setDrawerHeader()
-        }
 
+        }
+        setDrawerHeader()
         setDrawerBody()
 
     }
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         return  navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private suspend fun setDrawerHeader() {
+    private fun setDrawerHeader() {
         val navigationView : NavigationView = findViewById(R.id.nav_view)
         val headerNav = navigationView.getHeaderView(0)
         val tvHeaderUsername = headerNav.findViewById<TextView>(R.id.tv_header_username)
