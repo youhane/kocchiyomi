@@ -13,12 +13,24 @@ class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
 
     val feedResponse: LiveData<ApiFeedResponse> = response
 
+    private fun getAlternativeFeed(){
+        viewModelScope.launch {
+            try {
+                response.value = Mangadex.retrofitService.getAlternativeMangas(limit = 30)
+            } catch (e: Exception){
+                Log.w("Manga Alt Browse Excpt", e.toString())
+            }
+
+        }
+    }
+
     fun getFeed(){
         viewModelScope.launch {
             try {
                 response.value = Mangadex.retrofitService.getMangas(limit = 30)
             } catch (e: Exception){
                 Log.w("Manga Browse Exception", e.toString())
+                getAlternativeFeed()
             }
 
         }

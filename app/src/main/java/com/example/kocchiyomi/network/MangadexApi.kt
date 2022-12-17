@@ -29,7 +29,15 @@ interface MangadexApi {
     suspend fun getMangas(
         @Query("ids[]") ids: List<String>? = null,
         @Query("limit") limit: Int? = null,
-        @Query("includes[]") includes: List<String>? = listOf("cover_art", "author")
+        @Query("includes[]") includes: List<String>? = listOf("cover_art", "author"),
+        @Query("excludedTags[]") excludedTags: List<String>? = listOf("3e2b8dae-350e-4ab8-a8ce-016e844b9f0d")
+    ): ApiFeedResponse
+
+    @GET("/manga")
+    suspend fun getAlternativeMangas(
+        @Query("ids[]") ids: List<String>? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("includes[]") includes: List<String>? = listOf("cover_art", "author"),
     ): ApiFeedResponse
 
     @GET("/manga/{manga_id}?includes[]=cover_art&includes[]=author")
