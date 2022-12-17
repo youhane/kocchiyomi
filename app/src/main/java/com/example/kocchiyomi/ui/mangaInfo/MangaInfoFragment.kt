@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.kocchiyomi.KocchiyomiApplication
@@ -48,7 +50,7 @@ class MangaInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btnAddToLibrary.setOnClickListener {
-            viewModel.saveToLibrary(manga.id)
+            viewModel.saveToLibrary(manga)
             binding.btnAddToLibrary.visibility = View.GONE
             binding.tvAddToLibrary.visibility = View.GONE
             binding.btnRemoveFromLibrary.visibility = View.VISIBLE
@@ -63,10 +65,20 @@ class MangaInfoFragment : Fragment() {
             binding.tvAddToLibrary.visibility = View.VISIBLE
         }
 
-        if ( viewModel.getById(manga.id)?.id == manga.id) {
-            binding.btnRemoveFromLibrary.visibility = View.VISIBLE
-            binding.btnAddToLibrary.visibility = View.GONE
-        }
+        viewModel.getById(manga.id)
+        viewModel.firebaseMangaIdResponse.observe(viewLifecycleOwner, Observer { firebaseMangaId ->
+            if (firebaseMangaId) {
+                binding.btnRemoveFromLibrary.visibility = View.VISIBLE
+                binding.btnAddToLibrary.visibility = View.GONE
+                binding.tvRemoveFromLibrary.visibility = View.VISIBLE
+                binding.tvAddToLibrary.visibility = View.GONE
+            } else {
+                binding.btnRemoveFromLibrary.visibility = View.GONE
+                binding.btnAddToLibrary.visibility = View.VISIBLE
+                binding.tvRemoveFromLibrary.visibility = View.GONE
+                binding.tvAddToLibrary.visibility = View.VISIBLE
+            }
+        })
 
         val adapter = ChapterListAdapter()
 
@@ -100,6 +112,7 @@ class MangaInfoFragment : Fragment() {
 
 
     override fun onResume() {
+
         (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.GONE
         super.onResume()
     }

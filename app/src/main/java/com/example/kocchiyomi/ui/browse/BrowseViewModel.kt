@@ -13,7 +13,7 @@ class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
 
     val feedResponse: LiveData<ApiFeedResponse> = response
 
-    private fun getAlternativeFeed(){
+    private fun getAlternativeFeed() {
         viewModelScope.launch {
             try {
                 response.value = Mangadex.retrofitService.getAlternativeMangas(limit = 30)
@@ -24,7 +24,7 @@ class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
         }
     }
 
-    fun getFeed(){
+    fun getFeed() {
         viewModelScope.launch {
             try {
                 response.value = Mangadex.retrofitService.getMangas(limit = 30)
@@ -36,7 +36,7 @@ class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
         }
     }
 
-    fun getLibrary() = mangaDao.getAll()
+//    fun getLibrary() = mangaDao.getAll()
 }
 
 class BrowseViewModelFactory(private val mangaDao: MangaDao):ViewModelProvider.Factory{

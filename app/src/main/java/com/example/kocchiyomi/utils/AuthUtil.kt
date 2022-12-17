@@ -34,7 +34,12 @@ object AuthUtil {
         emailRequest = authEmail
 
         val db = FirestoreHelper.firestoreInstance
-        userNameRequest = db.collection("users").document(authId).get().await().data?.get("userName") as String
+        try {
+            userNameRequest = db.collection("users").document(authId).get().await().data?.get("userName") as String
+        } catch (e: Exception) {
+            Log.w("getUserId Exception", e.toString())
+        }
+
 
         return User(uidRequest, userNameRequest, emailRequest)
     }

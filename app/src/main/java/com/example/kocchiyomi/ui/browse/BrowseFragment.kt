@@ -44,8 +44,11 @@ class BrowseFragment : Fragment() {
             viewModel.getFeed()
             binding.browseFragment.isRefreshing = false
         }
+
+        // Pair("name", it.attributes.title.en
+
         adapter.onClick = {
-            val bundle = bundleOf( Pair("manga", it), Pair("name", it.attributes.title.en) )
+            val bundle = bundleOf( Pair("manga", it))
             Navigation.findNavController(view).navigate(R.id.action_browseFragment_to_mangaInfoFragment, bundle)
         }
 
