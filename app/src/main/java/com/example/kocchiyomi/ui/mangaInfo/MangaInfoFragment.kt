@@ -29,7 +29,7 @@ class MangaInfoFragment : Fragment() {
 
     private val viewModel: MangaInfoViewModel by activityViewModels{
         MangaInfoViewModelFactory(
-            (activity?.application as KocchiyomiApplication).database.mangaDao()
+//            (activity?.application as KocchiyomiApplication).chapterDatabase.chapterDao()
         )
     }
 
@@ -65,7 +65,7 @@ class MangaInfoFragment : Fragment() {
             binding.tvAddToLibrary.visibility = View.VISIBLE
         }
 
-        manga.id?.let { viewModel.getById(it) }
+        manga.id?.let { viewModel.mangaIdInLibrary(it) }
         viewModel.firebaseMangaIdResponse.observe(viewLifecycleOwner, Observer { firebaseMangaId ->
             if (firebaseMangaId) {
                 binding.btnRemoveFromLibrary.visibility = View.VISIBLE
@@ -81,7 +81,7 @@ class MangaInfoFragment : Fragment() {
         })
 
         binding.mangaInfoFragment.setOnRefreshListener {
-            manga.id?.let { viewModel.getById(it) }
+            manga.id?.let { viewModel.mangaIdInLibrary(it) }
             manga.id?.let { viewModel.getChapters(it) }
             binding.mangaInfoFragment.isRefreshing = false
         }

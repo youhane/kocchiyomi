@@ -1,10 +1,8 @@
 package com.example.kocchiyomi.data.firebase.model
 
-import com.example.kocchiyomi.data.model.MangaEntity
-import com.google.firebase.Timestamp
+import com.example.kocchiyomi.data.entity.MangaEntity
 import com.google.firebase.firestore.IgnoreExtraProperties
 import com.google.firebase.firestore.PropertyName
-import com.google.firebase.firestore.ServerTimestamp
 
 @Suppress("ClassName")
 @IgnoreExtraProperties

@@ -29,7 +29,7 @@ class LibraryViewModel(private val mangaDao: MangaDao) : ViewModel() {
             try {
 //                Log.d("user refresh id", AuthUtil.getAuthId())
 //                FirebaseAuth.getInstance().currentUser?.let { Log.d("user refresh id 2", it.uid) }
-                val res = firestore.collection("users")
+                firestore.collection("users")
                     .document(AuthUtil.getAuthId())
                     .collection("library").addSnapshotListener(
                         object: EventListener<QuerySnapshot>{

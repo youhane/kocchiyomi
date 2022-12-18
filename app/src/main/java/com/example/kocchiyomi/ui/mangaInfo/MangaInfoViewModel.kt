@@ -6,38 +6,91 @@ import com.example.kocchiyomi.data.Mangadex
 import com.example.kocchiyomi.data.api.ApiChaptersResponse
 import com.example.kocchiyomi.data.model.Chapter
 import com.example.kocchiyomi.data.model.Manga
-import com.example.kocchiyomi.data.model.MangaEntity
-import com.example.kocchiyomi.data.model.User
-import com.example.kocchiyomi.database.MangaDao
 import com.example.kocchiyomi.utils.AuthUtil
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.*
+import com.google.firebase.firestore.EventListener
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import java.util.*
 
-class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
+class MangaInfoViewModel() : ViewModel() {
     private val _chapters = MutableLiveData<List<Chapter>>()
+    val chapters: LiveData<List<Chapter>> = _chapters
     private lateinit var chaptersResponse: ApiChaptersResponse
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val mangaIdResponse = MutableLiveData<Boolean>()
     val firebaseMangaIdResponse: LiveData<Boolean> = mangaIdResponse
 
-    val chapters: LiveData<List<Chapter>> = _chapters
+//    private val databaseChaptersResponse = MutableLiveData<List<Chapter>>()
+//    private val firestoreChaptersResponse: LiveData<List<Chapter>> = databaseChaptersResponse
 
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
     }
 
+    private fun insertChapter(id: String, chapterList: List<Chapter>) {
+        viewModelScope.launch {
+            try {
+                for (chap in chapterList) {
+                    chap.id?.let {
+                        firestore.collection("mangas")
+                            .document(id)
+                            .collection("chapters")
+                            .document(it)
+                            .set(chap)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.w("insert Chap Excp", e.toString())
+            }
+        }
+    }
 
     fun getChapters(id: String) {
         viewModelScope.launch {
             try {
+                var chapterList: List<Chapter> = emptyList()
+                firestore.collection("mangas")
+                    .document(id)
+                    .collection("chapters")
+                    .orderBy("attributes.publishAt", Query.Direction.ASCENDING)
+                    .addSnapshotListener { snapshot, e ->
+                        if (e != null) {
+                            Log.w("Firestore error", "Listen failed.", e)
+                            return@addSnapshotListener
+                        }
+
+                        if (snapshot != null) {
+                            for (doc: DocumentChange in snapshot?.documentChanges!!) {
+                                if (doc.type == DocumentChange.Type.ADDED) {
+                                    chapterList =
+                                        chapterList + doc.document.toObject(Chapter::class.java)
+                                }
+                            }
+                            if (chapterList.isNotEmpty()) {
+
+                                _chapters.value = chapterList
+                            }
+                            else {
+                                getChapterFromMangaDex(id)
+                            }
+                        }
+                    }
+
+            } catch (e: Exception) {
+                chaptersResponse = ApiChaptersResponse("", emptyList(), 500, 0)
+                Log.w("Firestore Exception", e.toString())
+            }
+        }
+    }
+
+    private fun getChapterFromMangaDex(id: String) {
+        viewModelScope.launch {
+            try {
                 chaptersResponse = Mangadex.retrofitService.getChapters(id)
                 _chapters.value = chaptersResponse.data
+                insertChapter(id, chaptersResponse.data)
             } catch (e: Exception) {
                 chaptersResponse = ApiChaptersResponse("", emptyList(), 500, 0)
                 Log.w("Mangadex API Exception", e.toString())
@@ -87,13 +140,14 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
         }
     }
 
-    fun getById(id: String) {
+    fun mangaIdInLibrary(id: String) {
         viewModelScope.launch {
             try {
                 val library = firestore.collection("users")
                     .document(AuthUtil.getAuthId())
                     .collection("library")
                     .document(id)
+
 
                 mangaIdResponse.value = false
                 library.get().addOnSuccessListener { document ->
@@ -106,7 +160,7 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
                     }
 
             } catch (e: Exception) {
-                Log.w("getById Exception", e.toString())
+                Log.w("mangaIdInLib Exception", e.toString())
             }
         }
     }
@@ -115,12 +169,12 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
 }
 
 class MangaInfoViewModelFactory(
-    private val mangaDao: MangaDao
+//    private val chapterDao: ChapterDao
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MangaInfoViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return MangaInfoViewModel(mangaDao) as T
+            return MangaInfoViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
