@@ -44,14 +44,14 @@ class LibraryFragment : Fragment() {
             binding.libraryFragment.isRefreshing = false
         }
         adapter.onClick = {
-            val bundle = bundleOf( Pair("manga", it), Pair("name", it.attributes.title.en) )
-            Navigation.findNavController(view).navigate(R.id.action_browseFragment_to_mangaInfoFragment, bundle)
+            val bundle = bundleOf( Pair("manga", it), Pair("name", it.attributes?.title?.en) )
+            Navigation.findNavController(view).navigate(R.id.action_libraryFragment_to_mangaInfoFragment, bundle)
         }
 
         binding.browseRecyclerView.adapter = adapter
 
         viewModel.libraryResponse.observe(viewLifecycleOwner){
-                response -> (binding.browseRecyclerView.adapter as MangaListAdapter).mangaList = response.mangaList
+                response -> (binding.browseRecyclerView.adapter as MangaListAdapter).mangaList = response
         }
 
         super.onViewCreated(view, savedInstanceState)

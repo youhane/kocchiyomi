@@ -1,5 +1,5 @@
 package com.example.kocchiyomi.data.model
 
 data class Description(
-    val en: String?,
+    val en: String? = null,
 )

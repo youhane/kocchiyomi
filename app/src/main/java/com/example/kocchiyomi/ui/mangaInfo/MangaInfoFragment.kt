@@ -37,7 +37,7 @@ class MangaInfoFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let { manga = it.getSerializable("manga") as Manga }
-        viewModel.getChapters(manga.id)
+        manga.id?.let { viewModel.getChapters(it) }
     }
 
     override fun onCreateView(
@@ -58,14 +58,14 @@ class MangaInfoFragment : Fragment() {
         }
 
         binding.btnRemoveFromLibrary.setOnClickListener {
-            viewModel.removeFromLibrary(manga.id)
+            manga.id?.let { it1 -> viewModel.removeFromLibrary(it1) }
             binding.btnRemoveFromLibrary.visibility = View.GONE
             binding.tvRemoveFromLibrary.visibility = View.GONE
             binding.btnAddToLibrary.visibility = View.VISIBLE
             binding.tvAddToLibrary.visibility = View.VISIBLE
         }
 
-        viewModel.getById(manga.id)
+        manga.id?.let { viewModel.getById(it) }
         viewModel.firebaseMangaIdResponse.observe(viewLifecycleOwner, Observer { firebaseMangaId ->
             if (firebaseMangaId) {
                 binding.btnRemoveFromLibrary.visibility = View.VISIBLE
@@ -80,12 +80,18 @@ class MangaInfoFragment : Fragment() {
             }
         })
 
-        val adapter = ChapterListAdapter()
-
         binding.mangaInfoFragment.setOnRefreshListener {
-            viewModel.getChapters(manga.id)
+            manga.id?.let { viewModel.getById(it) }
+            manga.id?.let { viewModel.getChapters(it) }
             binding.mangaInfoFragment.isRefreshing = false
         }
+
+        setMangaInfoHeader()
+        setChapterList(view)
+    }
+
+    private fun setChapterList(view: View) {
+        val adapter = ChapterListAdapter()
 
         adapter.onClick = {
             val bundle = bundleOf( Pair("chapter_id", it.id) )
@@ -98,18 +104,19 @@ class MangaInfoFragment : Fragment() {
         }
 
         binding.rvChapterList.layoutManager = LinearLayoutManager(requireContext())
+    }
 
-        binding.tvMangaNameText.text = manga.attributes.title.en
-        binding.tvMangaAuthorText.text = manga.relationships.first{ rel -> rel.type == "author"}.attributes?.name.toString()
-        Log.d("attr", manga.relationships.first{ rel -> rel.type == "author"}.attributes?.name.toString())
-        binding.tvMangaDescriptionText.text = manga.attributes.description.en
+    private fun setMangaInfoHeader() {
+        binding.tvMangaNameText.text = manga.attributes?.title?.en ?: "No Title"
+        binding.tvMangaAuthorText.text = manga.relationships?.first{ rel -> rel.type == "author"}?.attributes?.name.toString()
+        Log.d("attr", manga.relationships?.first{ rel -> rel.type == "author"}?.attributes?.name.toString())
+        binding.tvMangaDescriptionText.text = manga.attributes?.description?.en ?: ""
 
         binding.ivMangaCoverImage
-            .load("https://uploads.mangadex.org/covers/${manga.id}/${manga.relationships.first{ rel -> rel.type == "cover_art" }.attributes?.fileName}.256.jpg")
+            .load("https://uploads.mangadex.org/covers/${manga.id}/${manga.relationships?.first{ rel -> rel.type == "cover_art" }?.attributes?.fileName}.256.jpg")
 
         binding.ivMangaCoverImage.clipToOutline=true
     }
-
 
     override fun onResume() {
 

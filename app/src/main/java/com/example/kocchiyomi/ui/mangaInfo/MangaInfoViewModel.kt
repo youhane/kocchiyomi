@@ -10,10 +10,13 @@ import com.example.kocchiyomi.data.model.MangaEntity
 import com.example.kocchiyomi.data.model.User
 import com.example.kocchiyomi.database.MangaDao
 import com.example.kocchiyomi.utils.AuthUtil
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.util.*
 
 class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
     private val _chapters = MutableLiveData<List<Chapter>>()
@@ -43,18 +46,21 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
     }
 
     fun saveToLibrary(manga: Manga) {
-        viewModelScope.launch {
+            manga.timestamp = Timestamp(Date())
+            viewModelScope.launch {
             try {
-                firestore.collection("users")
-                    .document(AuthUtil.authId)
-                    .collection("library")
-                    .document(manga.id)
-                    .set(manga)
-                    .addOnSuccessListener {
-                        Log.d("Firebase", "Library Saved")
-                    }.addOnFailureListener {
-                        Log.w("Firebase Save Exception", it.message.toString())
-                    }
+                manga.id?.let {
+                    firestore.collection("users")
+                        .document(AuthUtil.authId)
+                        .collection("library")
+                        .document(it)
+                        .set(manga)
+                        .addOnSuccessListener {
+                            Log.d("Firebase", "Library Saved")
+                        }.addOnFailureListener {
+                            Log.w("Firebase Save Exception", it.message.toString())
+                        }
+                }
             } catch (e: Exception) {
                 Log.w("Add To Lib Excp", e.toString())
             }

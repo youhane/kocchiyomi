@@ -51,7 +51,7 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
 
         var scanGroup = ""
         if (scanGroupRel != null)
-            scanGroup = "• " + scanGroupRel.attributes.name
+            scanGroup = "• " + (scanGroupRel.attributes?.name ?: "")
 
         holder.tv_chapter_extra_info.text = holder.itemView.resources.getString(
             R.string.chapter_extra,

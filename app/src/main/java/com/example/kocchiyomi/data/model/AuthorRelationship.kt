@@ -1,7 +1,7 @@
 package com.example.kocchiyomi.data.model
 
 data class AuthorRelationship(
-    val id: String,
-    val type: String,
-    val attributes: AuthorAttributes?,
+    val id: String? = null,
+    val type: String? = null,
+    val attributes: AuthorAttributes? = null,
 )

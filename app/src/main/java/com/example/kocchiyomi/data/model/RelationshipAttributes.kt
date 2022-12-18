@@ -9,6 +9,6 @@ data class RelationshipAttributes(
     val locale: String? = null,
     val version: Int? = null,
     val volume: String? = null,
-    @SerializedName("createdAt") val createdAt: String?,
-    @SerializedName("updatedAt") val updatedAt: String?,
+    @SerializedName("createdAt") val createdAt: String? = null,
+    @SerializedName("updatedAt") val updatedAt: String? = null,
 )
