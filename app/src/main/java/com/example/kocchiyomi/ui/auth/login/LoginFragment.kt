@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (AuthUtil.firebaseAuthInstance.currentUser != null) {
+        if (AuthUtil.firebaseAuthInstance().currentUser != null) {
             navigateToHome()
         }
     }
@@ -142,7 +142,7 @@ class LoginFragment : Fragment() {
         }
          else {
             viewModel.login(
-                AuthUtil.firebaseAuthInstance,
+                AuthUtil.firebaseAuthInstance(),
                 email,
                 password
             )

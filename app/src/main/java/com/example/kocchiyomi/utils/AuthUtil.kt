@@ -8,21 +8,17 @@ import kotlinx.coroutines.tasks.await
 
 object AuthUtil {
 
-    val firebaseAuthInstance: FirebaseAuth by lazy {
+    fun firebaseAuthInstance(): FirebaseAuth {
 //        println("firebaseAuthInstance.:")
-        FirebaseAuth.getInstance()
+        return FirebaseAuth.getInstance()
     }
 
-    val authId: String  by lazy {
-        firebaseAuthInstance.currentUser!!.uid
+    fun getAuthId(): String {
+        return firebaseAuthInstance().currentUser!!.uid
     }
 
-    val authEmail: String by lazy {
-        firebaseAuthInstance.currentUser!!.email.toString()
-    }
-
-    val firebaseSignOut by lazy {
-        firebaseAuthInstance.signOut()
+    fun getAuthEmail(): String {
+        return firebaseAuthInstance().currentUser!!.email.toString()
     }
 
     suspend fun getUserDetail(): User {
@@ -30,12 +26,12 @@ object AuthUtil {
         var uidRequest = "default"
         var emailRequest = "default"
 
-        uidRequest = authId
-        emailRequest = authEmail
+        uidRequest = getAuthId()
+        emailRequest = getAuthEmail()
 
         val db = FirestoreHelper.firestoreInstance
         try {
-            userNameRequest = db.collection("users").document(authId).get().await().data?.get("userName") as String
+            userNameRequest = db.collection("users").document(getAuthId()).get().await().data?.get("userName") as String
         } catch (e: Exception) {
             Log.w("getUserId Exception", e.toString())
         }

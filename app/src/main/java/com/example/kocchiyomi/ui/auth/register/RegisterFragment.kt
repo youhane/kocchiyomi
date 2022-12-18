@@ -36,7 +36,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
 
 
-        if (AuthUtil.firebaseAuthInstance.currentUser != null) {
+        if (AuthUtil.firebaseAuthInstance().currentUser != null) {
             navigateToHome()
         }
     }
@@ -162,7 +162,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             })
             if (isConfirmPasswordMatchValue) {
                 viewModel.register(
-                    AuthUtil.firebaseAuthInstance,
+                    AuthUtil.firebaseAuthInstance(),
                     email,
                     password,
                     userName,

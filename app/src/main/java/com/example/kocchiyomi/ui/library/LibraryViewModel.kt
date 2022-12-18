@@ -7,6 +7,8 @@ import com.example.kocchiyomi.data.api.ApiLibraryResponse
 import com.example.kocchiyomi.data.model.Manga
 import com.example.kocchiyomi.database.MangaDao
 import com.example.kocchiyomi.utils.AuthUtil
+import com.example.kocchiyomi.utils.FirestoreHelper
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class LibraryViewModel(private val mangaDao: MangaDao) : ViewModel() {
 
-    private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private var firestore: FirebaseFirestore = FirestoreHelper.firestoreInstance
 
     private val response = MutableLiveData<List<Manga>>()
 
@@ -25,8 +27,10 @@ class LibraryViewModel(private val mangaDao: MangaDao) : ViewModel() {
     fun getLibrary() {
         viewModelScope.launch {
             try {
+//                Log.d("user refresh id", AuthUtil.getAuthId())
+//                FirebaseAuth.getInstance().currentUser?.let { Log.d("user refresh id 2", it.uid) }
                 val res = firestore.collection("users")
-                    .document(AuthUtil.authId)
+                    .document(AuthUtil.getAuthId())
                     .collection("library").addSnapshotListener(
                         object: EventListener<QuerySnapshot>{
                             override fun onEvent(

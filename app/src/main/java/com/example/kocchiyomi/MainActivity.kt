@@ -32,6 +32,8 @@ import com.example.kocchiyomi.adapters.MangaListAdapter
 import com.example.kocchiyomi.ui.auth.AuthActivity
 import com.example.kocchiyomi.ui.browse.BrowseViewModel
 import com.example.kocchiyomi.ui.browse.BrowseViewModelFactory
+import com.example.kocchiyomi.utils.FirestoreHelper
+import com.google.firebase.firestore.local.SQLitePersistence.clearPersistence
 import kotlinx.coroutines.launch
 
 
@@ -108,8 +110,16 @@ class MainActivity : AppCompatActivity() {
         val navLogout = menuNav.findItem(R.id.nav_logout)
 
         navLogout.setOnMenuItemClickListener {
-            AuthUtil.firebaseSignOut
-            navigateToAuth()
+            if (AuthUtil.firebaseAuthInstance().currentUser != null) {
+                viewModel.signOut()
+                viewModel.isSignOut.observe(this) { response ->
+                    run {
+                        if (response) {
+                            navigateToAuth()
+                        }
+                    }
+                }
+            }
             true
         }
     }

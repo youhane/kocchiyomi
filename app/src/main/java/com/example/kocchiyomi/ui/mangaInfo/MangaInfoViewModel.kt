@@ -51,7 +51,7 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
             try {
                 manga.id?.let {
                     firestore.collection("users")
-                        .document(AuthUtil.authId)
+                        .document(AuthUtil.getAuthId())
                         .collection("library")
                         .document(it)
                         .set(manga)
@@ -71,7 +71,7 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
         viewModelScope.launch {
             try {
                 firestore.collection("users")
-                    .document(AuthUtil.authId)
+                    .document(AuthUtil.getAuthId())
                     .collection("library")
                     .document(id)
                     .delete()
@@ -91,7 +91,7 @@ class MangaInfoViewModel(private val mangaDao: MangaDao) : ViewModel() {
         viewModelScope.launch {
             try {
                 val library = firestore.collection("users")
-                    .document(AuthUtil.authId)
+                    .document(AuthUtil.getAuthId())
                     .collection("library")
                     .document(id)
 
