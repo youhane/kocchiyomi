@@ -86,7 +86,7 @@ class MangaInfoViewModel() : ViewModel() {
                 firestore.collection("mangas")
                     .document(id)
                     .collection("chapters")
-                    .orderBy("attributes.publishAt", Query.Direction.ASCENDING)
+                    .orderBy("attributes.createdAt", Query.Direction.ASCENDING)
                     .addSnapshotListener(
                         object : EventListener<QuerySnapshot>{
                             override fun onEvent(
