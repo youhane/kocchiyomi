@@ -41,13 +41,14 @@ class LibraryViewModel(private val mangaDao: MangaDao) : ViewModel() {
                                     Log.e("Firestore error", error.message.toString())
                                     return
                                 }
-                                var mangaList: List<Manga> = emptyList()
+                                Log.d("Get Library", "Firestore")
+                                var mangaList = ArrayList<Manga>()
                                 for (doc: DocumentChange in value?.documentChanges!!){
                                     if (doc.type == DocumentChange.Type.ADDED) {
-                                        mangaList = mangaList + doc.document.toObject(Manga::class.java)
+                                        mangaList.add(doc.document.toObject(Manga::class.java))
                                     }
                                 }
-                                response.value = mangaList
+                                response.value = mangaList.toList()
                             }
                         }
                     )

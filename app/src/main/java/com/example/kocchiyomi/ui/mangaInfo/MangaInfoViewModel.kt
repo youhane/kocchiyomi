@@ -12,6 +12,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MangaInfoViewModel() : ViewModel() {
     private val _chapters = MutableLiveData<List<Chapter>>()
@@ -50,34 +51,63 @@ class MangaInfoViewModel() : ViewModel() {
     fun getChapters(id: String) {
         viewModelScope.launch {
             try {
-                var chapterList: List<Chapter> = emptyList()
+                val collection = firestore.collection("mangas")
+                    .document(id)
+                    .collection("chapters")
+                val countQuery = collection.count()
+                countQuery.get(AggregateSource.SERVER).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val snapshot = task.result
+                        val listCount = snapshot.count.toInt()
+                        Log.d("Firestore Success", "Count: $listCount")
+                        if (listCount == 0) {
+                            Log.d("Get Chapter", "Mangadex")
+                            getChapterFromMangaDex(id)
+                        }
+                        else {
+                            Log.d("Get Chapter", "Firestore")
+                            getChapterFromFirestore(id)
+                        }
+                    } else {
+                        Log.d("Firestore Failed", "Count failed: ", task.exception)
+                    }
+                }
+            } catch (e: Exception) {
+                chaptersResponse = ApiChaptersResponse("", emptyList(), 500, 0)
+                Log.w("Firestore Exception", e.toString())
+            }
+        }
+    }
+
+    private fun getChapterFromFirestore(id: String) {
+        Log.d("Get Chapter", "Call")
+        viewModelScope.launch {
+            try {
                 firestore.collection("mangas")
                     .document(id)
                     .collection("chapters")
                     .orderBy("attributes.publishAt", Query.Direction.ASCENDING)
-                    .addSnapshotListener { snapshot, e ->
-                        if (e != null) {
-                            Log.w("Firestore error", "Listen failed.", e)
-                            return@addSnapshotListener
-                        }
-
-                        if (snapshot != null) {
-                            for (doc: DocumentChange in snapshot?.documentChanges!!) {
-                                if (doc.type == DocumentChange.Type.ADDED) {
-                                    chapterList =
-                                        chapterList + doc.document.toObject(Chapter::class.java)
+                    .addSnapshotListener(
+                        object : EventListener<QuerySnapshot>{
+                            override fun onEvent(
+                                value: QuerySnapshot?,
+                                error: FirebaseFirestoreException?
+                            ) {
+                                if (error != null) {
+                                    Log.w("Firestore error", "Listen failed.", error)
+                                    return
                                 }
-                            }
-                            if (chapterList.isNotEmpty()) {
-
-                                _chapters.value = chapterList
-                            }
-                            else {
-                                getChapterFromMangaDex(id)
+                                var chapterTempList = ArrayList<Chapter>()
+                                for (doc: DocumentChange in value?.documentChanges!!) {
+                                    if (doc.type == DocumentChange.Type.ADDED) {
+                                        chapterTempList.add(doc.document.toObject(Chapter::class.java))
+                                    }
+                                }
+                                _chapters.value = chapterTempList.toList()
+                                Log.d("Get ChapterFirestore", "Success")
                             }
                         }
-                    }
-
+                    )
             } catch (e: Exception) {
                 chaptersResponse = ApiChaptersResponse("", emptyList(), 500, 0)
                 Log.w("Firestore Exception", e.toString())
@@ -91,6 +121,7 @@ class MangaInfoViewModel() : ViewModel() {
                 chaptersResponse = Mangadex.retrofitService.getChapters(id)
                 _chapters.value = chaptersResponse.data
                 insertChapter(id, chaptersResponse.data)
+                Log.d("Get ChapterMangadex", "Success")
             } catch (e: Exception) {
                 chaptersResponse = ApiChaptersResponse("", emptyList(), 500, 0)
                 Log.w("Mangadex API Exception", e.toString())
