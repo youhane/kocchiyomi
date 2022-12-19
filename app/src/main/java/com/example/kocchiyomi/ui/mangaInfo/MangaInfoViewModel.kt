@@ -46,12 +46,15 @@ class MangaInfoViewModel() : ViewModel() {
     }
 
     fun getChapters(id: String) {
+        Log.d("Get Chapter", "Call")
         viewModelScope.launch {
             try {
                 val collection = firestore.collection("mangas")
                     .document(id)
                     .collection("chapters")
+
                 val countQuery = collection.count()
+
                 countQuery.get(AggregateSource.SERVER).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val snapshot = task.result
@@ -66,7 +69,8 @@ class MangaInfoViewModel() : ViewModel() {
                             getChapterFromFirestore(id)
                         }
                     } else {
-                        Log.d("Firestore Failed", "Count failed: ", task.exception)
+                        Log.d("Firestore Failed", "Count failed: $task.exception")
+                        getChapterFromFirestore(id)
                     }
                 }
             } catch (e: Exception) {
@@ -77,7 +81,6 @@ class MangaInfoViewModel() : ViewModel() {
     }
 
     private fun getChapterFromFirestore(id: String) {
-        Log.d("Get Chapter", "Call")
         viewModelScope.launch {
             try {
                 firestore.collection("mangas")
