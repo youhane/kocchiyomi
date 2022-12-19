@@ -23,9 +23,6 @@ class MangaInfoViewModel() : ViewModel() {
     private val mangaIdResponse = MutableLiveData<Boolean>()
     val firebaseMangaIdResponse: LiveData<Boolean> = mangaIdResponse
 
-//    private val databaseChaptersResponse = MutableLiveData<List<Chapter>>()
-//    private val firestoreChaptersResponse: LiveData<List<Chapter>> = databaseChaptersResponse
-
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
     }

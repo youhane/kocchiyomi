@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class ApiLibraryResponse(
     val result: String,
     val response: String,
-    @SerializedName("data") val mangaList: List<Manga>,
+    val data: List<Manga>,
     val limit: Int,
     val offset: Int,
     val total: Int,
