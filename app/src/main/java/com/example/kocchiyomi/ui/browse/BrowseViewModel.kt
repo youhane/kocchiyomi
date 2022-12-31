@@ -9,7 +9,7 @@ import com.example.kocchiyomi.database.MangaDao
 import com.google.firebase.firestore.*
 import kotlinx.coroutines.launch
 
-class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
+class BrowseViewModel() : ViewModel() {
 
     private val response = MutableLiveData<ApiFeedResponse>()
     val feedResponse: LiveData<ApiFeedResponse> = response
@@ -89,11 +89,11 @@ class BrowseViewModel(private val mangaDao: MangaDao) : ViewModel() {
     }
 }
 
-class BrowseViewModelFactory(private val mangaDao: MangaDao):ViewModelProvider.Factory{
+class BrowseViewModelFactory():ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BrowseViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return BrowseViewModel(mangaDao) as T
+            return BrowseViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

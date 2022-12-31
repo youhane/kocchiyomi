@@ -20,7 +20,7 @@ class BrowseFragment : Fragment() {
 
     private val viewModel: BrowseViewModel by activityViewModels {
         BrowseViewModelFactory(
-            (activity?.application as KocchiyomiApplication).database.mangaDao()
+//            (activity?.application as KocchiyomiApplication).database.mangaDao()
         )
     }
 

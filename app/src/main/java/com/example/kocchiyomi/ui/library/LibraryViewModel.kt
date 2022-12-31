@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.launch
 
-class LibraryViewModel(private val mangaDao: MangaDao) : ViewModel() {
+class LibraryViewModel() : ViewModel() {
 
     private var firestore: FirebaseFirestore = FirestoreHelper.firestoreInstance
 
@@ -59,11 +59,11 @@ class LibraryViewModel(private val mangaDao: MangaDao) : ViewModel() {
     }
 }
 
-class LibraryViewModelFactory(private val mangaDao: MangaDao): ViewModelProvider.Factory{
+class LibraryViewModelFactory(): ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LibraryViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return LibraryViewModel(mangaDao) as T
+            return LibraryViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

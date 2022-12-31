@@ -36,7 +36,8 @@ class MangaInfoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let { manga = it.getSerializable("manga") as Manga }
+        arguments?.let { manga = it.getParcelable<Manga>("manga")!! }
+
         manga.id?.let { viewModel.getChapters(it) }
     }
 
@@ -118,10 +119,10 @@ class MangaInfoFragment : Fragment() {
         binding.ivMangaCoverImage.clipToOutline=true
     }
 
-    override fun onResume() {
+    override fun onStart() {
 
         (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.GONE
-        super.onResume()
+        super.onStart()
     }
 
     override fun onStop() {

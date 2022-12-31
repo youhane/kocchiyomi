@@ -20,7 +20,7 @@ class LibraryFragment : Fragment() {
 
     private val viewModel: LibraryViewModel by activityViewModels {
         LibraryViewModelFactory(
-            (activity?.application as KocchiyomiApplication).database.mangaDao()
+//            (activity?.application as KocchiyomiApplication).database.mangaDao()
         )
     }
 

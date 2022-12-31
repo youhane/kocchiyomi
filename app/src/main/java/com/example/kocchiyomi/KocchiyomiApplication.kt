@@ -1,7 +1,6 @@
 package com.example.kocchiyomi
 
 import android.app.Application
-import com.example.kocchiyomi.database.ChapterRoomDatabase
 import com.example.kocchiyomi.database.MangaRoomDatabase
 import com.google.firebase.database.FirebaseDatabase
 
@@ -13,11 +12,11 @@ class KocchiyomiApplication: Application(){
 //        scoresRef.keepSynced(true)
     }
 
-    val database: MangaRoomDatabase by lazy {
-        MangaRoomDatabase.getDatabase(this)
-    }
+//    val database: MangaRoomDatabase by lazy {
+//        MangaRoomDatabase.getDatabase(this)
+//    }
 
-    val chapterDatabase: ChapterRoomDatabase by lazy {
-        ChapterRoomDatabase.getDatabase(this)
-    }
+//    val chapterDatabase: ChapterRoomDatabase by lazy {
+//        ChapterRoomDatabase.getDatabase(this)
+//    }
 }

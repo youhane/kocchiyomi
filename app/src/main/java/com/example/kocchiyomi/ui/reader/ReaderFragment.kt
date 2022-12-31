@@ -64,10 +64,10 @@ class ReaderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onResume() {
+    override fun onStart() {
         (activity?.findViewById<BottomNavigationView>(R.id.bottom_nav))?.visibility = View.GONE
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-        super.onResume()
+        super.onStart()
     }
 
     override fun onStop() {
