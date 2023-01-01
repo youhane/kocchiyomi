@@ -104,3 +104,58 @@ With the bottom navigation bar, the user will be able to easily move tabs. The i
   ![image](./images/18.png)
   
 If we see in the top left corner of the page, we can see that there is a burger icon. When the user click the burger icon, the drawer will slide out showing the username of the user and the user’s email. Other than that, it will show the log out button to the user. When the log out button is pressed, the user will be navigated back to the sign in page.
+
+# Documentation on Updates
+-	October 28, 2022
+The project was initialized
+
+-	November 11, 2022
+The Sign In and Sign Up UI was made and the README.md was updated to explain the concept of our project
+
+-	November 12, 2022
+The SignIn and SignUp Id Name was editted
+
+-	November 13, 2022
+The Firebase Registration Auth was added
+
+-	November 14, 2022
+Try adding the mainActivity
+
+-	December 2, 2022
+The Recyler View for Manga List and the HTTP API into a Java Interface was added
+
+-	December 3, 2022
+The Bottom Nav was created, and the kotlin extension was updated to using Binding. The Browse Recyler View was also added. Other than that, a Black Action Bar was added and the rest is doing refactor.
+
+-	December 6, 2022
+The Manga Info Page was added, at the same day, the Manga Info Chapter was updated to hide null chapter
+
+-	December 7, 2022
+The Swipe to Refresh Feature was added
+
+-	December 9, 2022
+The Manga Page Reader was added, and the Bottom navigation & action bar visibility bug was fixed
+
+-	December 14, 2022
+The Login and Register with view model was added and the login password and navigation bug was fixed
+
+-	December 15, 2022
+The App side drawer was made, the login and register empty field handler was fixed, the signout function was added and the back button stack was fixed.
+
+-	December 16, 2022
+The project was fixed to support android version below 12
+
+-	December 17, 2022
+The Main ViewModel, Tab on the reader page and exclude tag on browse was added, and there was a fix in duplicate call function on setDrawerHeader()
+
+-	December 18, 2022
+The library was added, then add to Library Firestore Function. Other than that, the data Persistent when re-login was fixed
+
+-	December 19, 2022
+The Offline Chapter List and Offline Browse was added, the Limit Call to Firestore and Chapter fetch from cache If online was fixed, and the history tab was changed to search
+
+-	December 31, 2022
+The manga model was fixed from serializeable to parcelable
+
+-	January 1, 2023
+The Search Page and App Icon was added, and the unused resources, dependencies, classes, attributese, interface, etc was removed. Then the Nested Scroll on Search Page was updated. The Chapter List was fixed by adding hasfixedsize and remove wrap content. Other than that, this documentation was made in readme.
