@@ -92,6 +92,7 @@ class MangaInfoFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_mangaInfoFragment_to_readerFragment, bundle)
         }
         binding.rvChapterList.adapter = adapter
+        binding.rvChapterList.setHasFixedSize(true)
 
         viewModel.chapters.observe(viewLifecycleOwner) { list ->
             (binding.rvChapterList.adapter as ChapterListAdapter).chapterList = list
@@ -99,6 +100,8 @@ class MangaInfoFragment : Fragment() {
 
         binding.rvChapterList.layoutManager = LinearLayoutManager(requireContext())
     }
+
+
 
     private fun setMangaInfoHeader() {
         binding.tvMangaNameText.text = manga.attributes?.title?.en ?: "No Title"
