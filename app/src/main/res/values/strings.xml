@@ -1,17 +1,37 @@
 <resources>
     <string name="app_name">Kocchiyomi</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sign_out">Sign Out</string>
     <string name="library">Library</string>
     <string name="browse">Browse</string>
-    <string name="history">History</string>
+    <string name="search">Search</string>
     <string name="manga_info">Manga Info</string>
+    <string name="error_image">Error when load image. Please try again</string>
+    <string name="retry">Retry</string>
 
-    <string name="chapter_title" translatable="false">Ch.%1$s - %2$s</string>
-    <string name="chapter_extra" translatable="false">%1$s * %2$s</string>
+    <string name="chapter_title" translatable="false">Ch.%1$s %2$s</string>
+    <string name="chapter_extra" translatable="false">%1$s %2$s</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="already_have_an_account">Already have an account? \u0020</string>
+    <string name="don_t_have_an_account">Don\'t have an account?  \u0020</string>
+    <string name="username">Username</string>
+    <string name="sign_up_error">Sign Up Error</string>
+
+    <string name="email_wrong_format">Please enter valid email</string>
+    <string name="username_wrong_format">Min length of username is 3</string>
+    <string name="password_wrong_format">Min length of password is 6</string>
+    <string name="password_does_not_match">Password does not match</string>
+    <string name="check_username_email_retry">Check username, email, or password, then retry</string>
+    <string name="check_email_retry">Check email, or password, then retry</string>
+    <string name="log_out">Log out</string>
+    <string name="in_library">In library</string>
+    <string name="add_to_library">Add to library</string>
+    <string name="manga_cover_image">manga_cover_image</string>
+    <string name="image_page">image_page</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="name_mail_com">name@mail.com</string>
+    <string name="coverimage">coverImage</string>
 
 </resources>

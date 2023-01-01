@@ -1,6 +1,7 @@
 package com.example.kocchiyomi.ui.browse
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,7 @@ class BrowseFragment : Fragment() {
 
     private val viewModel: BrowseViewModel by activityViewModels {
         BrowseViewModelFactory(
-            (activity?.application as KocchiyomiApplication).database.mangaDao()
+//            (activity?.application as KocchiyomiApplication).database.mangaDao()
         )
     }
 
@@ -39,15 +40,22 @@ class BrowseFragment : Fragment() {
         val adapter = MangaListAdapter()
 //        adapter.libraryIds = viewModel.getLibrary().map { it.id }
 
+        binding.browseFragment.setOnRefreshListener {
+            viewModel.getFeed()
+            binding.browseFragment.isRefreshing = false
+        }
+
+        // Pair("name", it.attributes.title.en
+
         adapter.onClick = {
-            val bundle = bundleOf( Pair("manga", it), Pair("name", it.attributes.title.en) )
+            val bundle = bundleOf( Pair("manga", it))
             Navigation.findNavController(view).navigate(R.id.action_browseFragment_to_mangaInfoFragment, bundle)
         }
 
         binding.browseRecyclerView.adapter = adapter
 
-        viewModel.feedResponse.observe(viewLifecycleOwner){
-            response -> (binding.browseRecyclerView.adapter as MangaListAdapter).mangaList = response.mangaList
+        viewModel.feedResponse.observe(viewLifecycleOwner) {
+            response -> (binding.browseRecyclerView.adapter as MangaListAdapter).mangaList = response.data!!
         }
 
         super.onViewCreated(view, savedInstanceState)

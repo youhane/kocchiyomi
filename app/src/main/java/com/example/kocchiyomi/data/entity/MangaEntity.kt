@@ -1,4 +1,4 @@
-package com.example.kocchiyomi.data.model
+package com.example.kocchiyomi.data.entity
 
 import androidx.annotation.NonNull
 import androidx.room.Entity

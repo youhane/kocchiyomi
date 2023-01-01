@@ -3,7 +3,7 @@ package com.example.kocchiyomi.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.kocchiyomi.data.model.MangaEntity
+import com.example.kocchiyomi.data.entity.MangaEntity
 @Dao
 interface MangaDao {
     @Query("SELECT * FROM manga")

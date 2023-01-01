@@ -2,22 +2,21 @@ package com.example.kocchiyomi.database
 
 import android.content.Context
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteOpenHelper
-import com.example.kocchiyomi.data.model.MangaEntity
+import com.example.kocchiyomi.data.entity.MangaEntity
 
 @Database(entities = [MangaEntity::class], version = 1)
-abstract class DatabaseApp: RoomDatabase() {
+abstract class MangaRoomDatabase: RoomDatabase() {
     abstract fun mangaDao(): MangaDao
 
     companion object{
         @Volatile
-        private var INSTANCE: DatabaseApp? = null
+        private var INSTANCE: MangaRoomDatabase? = null
 
-        fun getDatabase(context: Context): DatabaseApp {
+        fun getDatabase(context: Context): MangaRoomDatabase {
             return INSTANCE?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context,
-                    DatabaseApp::class.java,
+                    MangaRoomDatabase::class.java,
                     "database_app"
                 )
                     .allowMainThreadQueries()

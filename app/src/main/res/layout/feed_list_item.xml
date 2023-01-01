@@ -22,23 +22,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        android:contentDescription="@string/coverimage" />
 
     <TextView
         android:id="@+id/tv_titleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_semibold"
+        android:maxLines="2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="8dp"
         android:textColor="@color/colorText"
         android:textSize="12sp"
-        android:fontFamily="@font/poppins_semibold"
-        tools:text="Title Name"
-        android:maxLines="2"
-        android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="@+id/iv_coverImage"
-        app:layout_constraintStart_toStartOf="@+id/iv_coverImage"/>
+        app:layout_constraintStart_toStartOf="@+id/iv_coverImage"
+        tools:ignore="TextContrastCheck"
+        tools:text="Title Name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

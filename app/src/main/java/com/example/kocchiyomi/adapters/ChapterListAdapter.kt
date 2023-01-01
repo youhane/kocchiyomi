@@ -30,24 +30,36 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
     }
 
     override fun onBindViewHolder(holder: ChapterListViewHolder, position: Int) {
+        var chapterTitle = ""
+        if (chapterList[position].attributes?.title != null && chapterList[position].attributes?.title?.isNotEmpty() == true){
+                chapterTitle = "-" + (chapterList[position].attributes?.title ?: "")
+        }
+
+        var chapternumber = "X"
+        if (chapterList[position].attributes?.chapter != "0" && chapterList[position].attributes?.chapter?.isNotEmpty() == true){
+            chapternumber = chapterList[position].attributes?.chapter.toString()
+        }
+
         holder.tv_chapter_title.text = holder.itemView.resources.getString(
             R.string.chapter_title,
-            chapterList[position].attributes.chapter,
-            chapterList[position].attributes.title
+            chapternumber,
+            chapterTitle
         )
 
         val scanGroupRel: ScanlationGroupRelationship? =
-            chapterList[position].relationships.find { it.type == "scanlation_group" }
+            chapterList[position].relationships?.find { it.type == "scanlation_group" }
 
         var scanGroup = ""
         if (scanGroupRel != null)
-            scanGroup = scanGroupRel.attributes.name
+            scanGroup = "• " + (scanGroupRel.attributes?.name ?: "")
 
         holder.tv_chapter_extra_info.text = holder.itemView.resources.getString(
             R.string.chapter_extra,
-            SimpleDateFormat("dd/MM/yyyy").format(chapterList[position].attributes.publishAt),
+            SimpleDateFormat("dd/MM/yyyy").format(chapterList[position].attributes?.publishAt ?: ""),
             scanGroup
         )
+
+        holder.itemView.setOnClickListener { onClick?.invoke(chapterList[position]) }
     }
 
     override fun getItemCount(): Int {
