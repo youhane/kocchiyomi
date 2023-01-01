@@ -76,6 +76,8 @@ The Manga Info Page will show the information of a certain manga. It will also g
 
   ![image](./images/12.png)
   
+  ![image](./images/19.png)
+  
 On top of the page, we use tabs to show the list of pages available, so we can move to another page by clicking one of the number above. Other than that, we use pager so that the user can move to the next page by swiping to left or right. There’s also an underline below the number to show which page is the user in. 
 
 6.	Browse Page
