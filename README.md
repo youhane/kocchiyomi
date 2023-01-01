@@ -19,7 +19,9 @@ Thanks! <a href='https://api.mangadex.org/docs/'>MangaDex</a> for the API 😉
 # Project Documentation
 
 1.	Sign In Page
+
  ![image](./images/1.png)
+
 When the user first open the app, the sign in page will pop up. Here, the user can input the existing credentials in order to continue to another page. The user can input the email and password then click the sign in button. If the user doesn’t have an account yet, we’ve also prepared a button to sign up from the sign in page.
 
  ![image](./images/2.png)
