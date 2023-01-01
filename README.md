@@ -22,7 +22,7 @@ Thanks! <a href='https://api.mangadex.org/docs/'>MangaDex</a> for the API 😉
 
  ![image](./images/1.png)
 
-When the user first open the app, the sign in page will pop up. Here, the user can input the existing credentials in order to continue to another page. The user can input the email and password then click the sign in button. If the user doesn’t have an account yet, we’ve also prepared a button to sign up from the sign in page.
+When the user first open the app, the sign in page will pop up. Here, the user can input the existing credentials in order to continue to another page. The user can input the email and password then click the sign in button. The credentials will be authenticated with firebase. If the user doesn’t have an account yet, we’ve also prepared a button to sign up from the sign in page.
 
  ![image](./images/2.png)
  
@@ -36,7 +36,7 @@ If the login is successful, the user will be navigated to the library page and t
 
   ![image](./images/4.png)
   
-If the user doesn’t have an account yet, then the user can make the account in this sign up page. The user will be asked to input some data as shown in the page, which are username, email, password and confirm password. After the data is input, the user can click the sign up button to register his/her account. Other than that, if it turns out that the user already have an account, we also provide a button to go back to the sign in page.
+If the user doesn’t have an account yet, then the user can make the account in this sign up page. The user will be asked to input some data as shown in the page, which are username, email, password and confirm password. We use firebase for this. After the data is input, the user can click the sign up button to register his/her account. Other than that, if it turns out that the user already have an account, we also provide a button to go back to the sign in page. 
  
  ![image](./images/5.png)
  
@@ -59,8 +59,10 @@ The pop up, as shown above, will be shown if there is an error
   ![image](./images/9.png)
   
 When the user succeed in logging in, the user will be directed to the library page. The above image show how it will look like when the library is empty. The user can add mangas they like to the library to help the user to find those mangas easier. 
+
   ![image](./images/10.png)
-The image above shows how it will look like when the user has added some manga to the library, as we can see, the manga cover will be shown and we can directly click on it to see the manga details in the Manga Info Page. 
+  
+The image above shows how it will look like when the user has added some manga to the library, as we can see, the manga cover will be shown and we can directly click on it to see the manga details in the Manga Info Page. In here, we use recycler view list view to show the list of mangas. So is in browse, search and chapters. With this list view, once the user saw it, it could still be seen even when the user is offline and close the app.
 
 4.	Manga Info Page
 
@@ -74,7 +76,7 @@ The Manga Info Page will show the information of a certain manga. It will also g
 
   ![image](./images/12.png)
   
-On top of the page, there are the pages, so we can move to another page by clicking one of the number above. Other than that, user can also move to the next page by swiping to left or right. There’s also an underline below the number to show which page is the user in
+On top of the page, we use tabs to show the list of pages available, so we can move to another page by clicking one of the number above. Other than that, we use pager so that the user can move to the next page by swiping to left or right. There’s also an underline below the number to show which page is the user in. 
 
 6.	Browse Page
 
