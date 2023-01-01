@@ -1,20 +1,12 @@
 buildscript {
     ext {
         firebaseAuth_version = "21.0.2"
-        firebaseui_version = "8.0.2"
-        gsm_version = "20.3.0"
+        gsm_version = "20.4.0"
         nav_version = "2.5.3"
-        room_version = "2.3.0"
         retrofit_version = "2.9.0"
         retrofitConverter_version = "2.5.0"
         gson_version = "2.9.0"
-        room_version = "2.4.3"
-        rxjava_version = "3.1.5"
-        rxandroid_version = "3.0.2"
-        rxkotlin_version = "3.0.1"
         arrow_version = "1.0.1"
-        kotlincoroutines_version = "1.6.4"
-
     }
     repositories {
         mavenCentral()

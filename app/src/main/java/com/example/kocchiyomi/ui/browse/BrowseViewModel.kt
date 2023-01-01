@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.kocchiyomi.data.Mangadex
 import com.example.kocchiyomi.data.api.ApiFeedResponse
-import com.example.kocchiyomi.data.model.Chapter
-import com.example.kocchiyomi.database.MangaDao
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.coroutines.launch
 
 class BrowseViewModel() : ViewModel() {

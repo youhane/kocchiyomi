@@ -8,10 +8,13 @@ import kotlinx.parcelize.Parcelize
 data class RelationshipAttributes(
     val name: String? = null,
     val description: String? = null,
-    @SerializedName("fileName") val fileName: String? = null,
+    @SerializedName("fileName")
+    val fileName: String? = null,
     val locale: String? = null,
     val version: Int? = null,
     val volume: String? = null,
-    @SerializedName("createdAt") val createdAt: String? = null,
-    @SerializedName("updatedAt") val updatedAt: String? = null,
+    @SerializedName("createdAt")
+    val createdAt: String? = null,
+    @SerializedName("updatedAt")
+    val updatedAt: String? = null,
 ): Parcelable

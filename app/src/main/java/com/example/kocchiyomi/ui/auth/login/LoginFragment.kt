@@ -3,15 +3,12 @@ package com.example.kocchiyomi.ui.auth.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -20,7 +17,6 @@ import com.example.kocchiyomi.MainActivity
 import com.example.kocchiyomi.R
 import com.example.kocchiyomi.databinding.FragmentLoginBinding
 import com.example.kocchiyomi.ui.auth.AuthActivity
-import com.example.kocchiyomi.ui.auth.register.RegisterViewModel
 import com.example.kocchiyomi.utils.AuthUtil
 import com.example.kocchiyomi.utils.ErrorMessage
 import com.example.kocchiyomi.utils.LoadState
@@ -125,7 +121,7 @@ class LoginFragment : Fragment() {
             }
         })
 
-        binding.etSigninPassword.setOnEditorActionListener { _, actionId, _ ->
+        binding.etSigninPassword.setOnEditorActionListener { _, _, _ ->
             login()
             true
         }
@@ -152,8 +148,8 @@ class LoginFragment : Fragment() {
     private fun navigateToHome() {
         val intent = Intent(activity as AuthActivity, MainActivity::class.java)
         startActivity(intent)
-        (activity as AuthActivity)!!.overridePendingTransition(0, 0)
-        (activity as AuthActivity)!!.finish()
+        (activity as AuthActivity).overridePendingTransition(0, 0)
+        (activity as AuthActivity).finish()
     }
 
     private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {

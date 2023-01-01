@@ -2,11 +2,8 @@ package com.example.kocchiyomi
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.kocchiyomi.data.Mangadex
-import com.example.kocchiyomi.data.api.ApiFeedResponse
 import com.example.kocchiyomi.data.model.User
 import com.example.kocchiyomi.utils.AuthUtil
-import com.example.kocchiyomi.utils.FirestoreHelper
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {

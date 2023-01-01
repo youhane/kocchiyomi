@@ -2,16 +2,11 @@ package com.example.kocchiyomi
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,21 +15,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kocchiyomi.databinding.ActivityMainBinding
-import com.example.kocchiyomi.utils.AuthUtil
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import androidx.lifecycle.lifecycleScope
-import arrow.core.computations.result
-import com.example.kocchiyomi.adapters.MangaListAdapter
 import com.example.kocchiyomi.ui.auth.AuthActivity
-import com.example.kocchiyomi.ui.browse.BrowseViewModel
-import com.example.kocchiyomi.ui.browse.BrowseViewModelFactory
-import com.example.kocchiyomi.utils.FirestoreHelper
-import com.google.firebase.firestore.local.SQLitePersistence.clearPersistence
-import kotlinx.coroutines.launch
+import com.example.kocchiyomi.utils.AuthUtil
+import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {

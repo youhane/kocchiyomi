@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,40 +7,44 @@
     android:label="@string/search"
     tools:context=".ui.search.SearchFragment"
     android:id="@+id/searchFragment"
-    tools:background="@color/colorBackgroundPrimary"
-    android:orientation="vertical">
+    tools:background="@color/colorBackgroundPrimary">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcv_search"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
-        >
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/sv_search"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="Search here ..."
-            app:iconifiedByDefault="false"
-            app:queryBackground="@android:color/transparent"
-            android:background="@color/colorBackgroundSecondary"
-            app:searchHintIcon="@drawable/ic_search_24"
-            app:closeIcon="@drawable/ic_close_24"
-            app:searchIcon="@drawable/ic_search_24"
-            android:theme="@style/Base.Widget.AppCompat.SearchView"
-            />
+            app:cardCornerRadius="15dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            >
 
-    </com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:queryHint="Search here ..."
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                android:background="@color/colorBackgroundSecondary"
+                app:searchHintIcon="@drawable/ic_search_24"
+                app:closeIcon="@drawable/ic_close_24"
+                app:searchIcon="@drawable/ic_search_24"
+                android:theme="@style/Base.Widget.AppCompat.SearchView"
+                />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="8dp"
-        tools:listitem="@layout/feed_list_item"
-        tools:itemCount="3" />
+        </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            tools:listitem="@layout/feed_list_item"
+            tools:itemCount="3" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

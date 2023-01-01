@@ -1,10 +1,12 @@
 package com.example.kocchiyomi.ui.reader
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.kocchiyomi.data.Mangadex
 import com.example.kocchiyomi.data.api.ApiReaderResponse
-import com.example.kocchiyomi.database.MangaDao
 import kotlinx.coroutines.launch
 
 class ReaderViewModel() : ViewModel() {
