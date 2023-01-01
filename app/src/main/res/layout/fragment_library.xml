@@ -11,6 +11,7 @@ tools:context=".ui.library.LibraryFragment">
     android:id="@+id/browse_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="8dp"
     tools:listitem="@layout/feed_list_item"
     tools:itemCount="3" />
 

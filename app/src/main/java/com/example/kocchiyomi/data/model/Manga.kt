@@ -7,19 +7,6 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 import java.io.Serializable
 
-//data class Manga(
-//    @SerializedName("attributes")
-//    val attributes: MangaAttributes? = null,
-//    @SerializedName("id")
-//    val id: String? = null,
-//    @SerializedName("relationships")
-//    val relationships: List<MangaRelationship>? = null,
-//    @SerializedName("type")
-//    val type: String? = null,
-//    @SerializedName("timestamp")
-//    var timestamp: Timestamp? = null
-//): Serializable
-
 @Parcelize
 data class Manga(
     @SerializedName("attributes")

@@ -54,9 +54,8 @@ class BrowseFragment : Fragment() {
 
         binding.browseRecyclerView.adapter = adapter
 
-        viewModel.feedResponse.observe(viewLifecycleOwner){
-            response -> (binding.browseRecyclerView.adapter as MangaListAdapter).mangaList =
-            response.data!!
+        viewModel.feedResponse.observe(viewLifecycleOwner) {
+            response -> (binding.browseRecyclerView.adapter as MangaListAdapter).mangaList = response.data!!
         }
 
         super.onViewCreated(view, savedInstanceState)

@@ -40,6 +40,16 @@ interface MangadexApi {
         @Query("includes[]") includes: List<String>? = listOf("cover_art", "author"),
     ): ApiFeedResponse
 
+    @GET("/manga")
+    suspend fun getSearchMangas(
+        @Query("ids[]") ids: List<String>? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("order[followedCount]") order: String = "desc",
+        @Query("title") title: String? = null,
+        @Query("includes[]") includes: List<String>? = listOf("cover_art", "author"),
+    ): ApiFeedResponse
+
+
     @GET("/manga/{manga_id}?includes[]=cover_art&includes[]=author")
     suspend fun getManga(@Path("manga_id") id: String): ApiMangaResponse
 
