@@ -9,7 +9,11 @@ Mobile Programming Project made with Kotlin
 
 
 ### Class
-LB08
+LH01
+
+### Image
+![image](./images/image1.jpg)
+
 
 # A Manga Reader App using the MangaDex API
 Thanks! <a href='https://api.mangadex.org/docs/'>MangaDex</a> for the API 😉
