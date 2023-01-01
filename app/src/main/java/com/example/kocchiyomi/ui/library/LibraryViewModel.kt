@@ -2,18 +2,10 @@ package com.example.kocchiyomi.ui.library
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.kocchiyomi.data.api.ApiChaptersResponse
-import com.example.kocchiyomi.data.api.ApiLibraryResponse
 import com.example.kocchiyomi.data.model.Manga
-import com.example.kocchiyomi.database.MangaDao
 import com.example.kocchiyomi.utils.AuthUtil
 import com.example.kocchiyomi.utils.FirestoreHelper
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import kotlinx.coroutines.launch
 
 class LibraryViewModel() : ViewModel() {
@@ -27,8 +19,6 @@ class LibraryViewModel() : ViewModel() {
     fun getLibrary() {
         viewModelScope.launch {
             try {
-//                Log.d("user refresh id", AuthUtil.getAuthId())
-//                FirebaseAuth.getInstance().currentUser?.let { Log.d("user refresh id 2", it.uid) }
                 firestore.collection("users")
                     .document(AuthUtil.getAuthId())
                     .collection("library").addSnapshotListener(

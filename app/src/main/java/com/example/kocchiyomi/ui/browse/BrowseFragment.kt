@@ -1,16 +1,14 @@
 package com.example.kocchiyomi.ui.browse
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.kocchiyomi.KocchiyomiApplication
 import com.example.kocchiyomi.R
 import com.example.kocchiyomi.adapters.MangaListAdapter
 import com.example.kocchiyomi.databinding.FragmentBrowseBinding
@@ -20,7 +18,6 @@ class BrowseFragment : Fragment() {
 
     private val viewModel: BrowseViewModel by activityViewModels {
         BrowseViewModelFactory(
-//            (activity?.application as KocchiyomiApplication).database.mangaDao()
         )
     }
 
@@ -38,14 +35,11 @@ class BrowseFragment : Fragment() {
         binding.browseRecyclerView.setHasFixedSize(true)
 
         val adapter = MangaListAdapter()
-//        adapter.libraryIds = viewModel.getLibrary().map { it.id }
 
         binding.browseFragment.setOnRefreshListener {
             viewModel.getFeed()
             binding.browseFragment.isRefreshing = false
         }
-
-        // Pair("name", it.attributes.title.en
 
         adapter.onClick = {
             val bundle = bundleOf( Pair("manga", it))

@@ -87,45 +87,6 @@ class RegisterViewModel: ViewModel(){
         confirmPasswordMatch.value = TextUtils.equals(password, confirmPassword)
         return confirmPasswordMatch
     }
-
-//    private fun isValidUser(user: IRegister.User): Boolean {
-//        val (email, password, confirmPassword, username) = user
-//        return getEmailError(email) === null &&
-//                getPasswordError(password) === null &&
-//                getPasswordError(confirmPassword) === null &&
-//                getPasswordMatchError(password, confirmPassword) === null &&
-//                getUserNameError(username) === null
-//    }
-
-//    protected val compositeDisposable = CompositeDisposable()
-//
-//    private val stateD = NotNullMutableLiveData(initialState)
-//    override val state: NotNullLiveData<S> get() = stateD
-//
-//    private val singleEventD = MutableLiveData<Event<E>>()
-//    override val singleEvent: LiveData<Event<E>> get() = singleEventD
-//
-//
-//    val state: NotNullLiveData<S>
-//
-//    val singleEvent: LiveData<Event<E>>
-//
-//    fun processIntents(intents: Observable<I>): Disposable
-//
-//    protected val setNewState = { state: S ->
-//        if (state != stateD.value) {
-//            stateD.value = state
-//        }
-//    }
-//
-//    protected fun sendEvent(event: E) {
-//        singleEventD.value = Event(event)
-//    }
-//
-//    @CallSuper
-//    override fun onCleared() {
-//        compositeDisposable.dispose()
-//    }
 }
 
 class RegisterViewModelFactory(

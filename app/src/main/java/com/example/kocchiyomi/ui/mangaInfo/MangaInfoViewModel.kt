@@ -12,7 +12,6 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MangaInfoViewModel() : ViewModel() {
     private val _chapters = MutableLiveData<List<Chapter>>()
@@ -199,12 +198,9 @@ class MangaInfoViewModel() : ViewModel() {
             }
         }
     }
-//    fun saveToLibrary(id: String) = mangaDao.save(MangaEntity(id))
-//    fun delete(id: String) = mangaDao.delete(id)
 }
 
 class MangaInfoViewModelFactory(
-//    private val chapterDao: ChapterDao
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MangaInfoViewModel::class.java)) {

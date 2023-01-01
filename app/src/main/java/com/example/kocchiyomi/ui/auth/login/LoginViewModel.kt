@@ -5,8 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.kocchiyomi.ui.auth.register.RegisterViewModel
-import com.example.kocchiyomi.ui.mangaInfo.MangaInfoViewModel
 import com.example.kocchiyomi.utils.ErrorMessage
 import com.example.kocchiyomi.utils.LoadState
 import com.google.firebase.auth.FirebaseAuth

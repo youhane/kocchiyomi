@@ -20,9 +20,7 @@ class MangaListAdapter : RecyclerView.Adapter<MangaListAdapter.MangaListViewHold
             field = value
             notifyDataSetChanged()
         }
-    //    private var context: Context? = null
     var onClick:((Manga) -> Unit)? = null
-    private var libraryIds: List<String> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaListViewHolder {
         val view: View =
@@ -34,14 +32,6 @@ class MangaListAdapter : RecyclerView.Adapter<MangaListAdapter.MangaListViewHold
 
     override fun onBindViewHolder(holder: MangaListViewHolder, position: Int) {
         holder.iv_coverImage.load("https://uploads.mangadex.org/covers/${mangaList[position].id}/${mangaList[position].relationships?.first{ rel -> rel.type == "cover_art" }?.attributes?.fileName}.256.jpg")
-//        if (mangaList[position].id in libraryIds) {
-//            Log.i("Manga in library", "${mangaList[position].attributes.title.en} factual, library = $libraryIds")
-//            holder.iv_coverImage.setForeground(ResourcesCompat.getDrawable(
-//                holder.itemView.resources,
-//                R.drawable.in_library_gradient,
-//                null
-//            ))
-//        } else { holder.iv_coverImage.setForeground(null) }
         holder.tv_titleName.text = mangaList[position].attributes?.title?.en ?: "No Title"
         holder.parentLayout.setOnClickListener {
             onClick?.invoke(mangaList[position])

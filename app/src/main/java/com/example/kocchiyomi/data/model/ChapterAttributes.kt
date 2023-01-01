@@ -1,8 +1,7 @@
 package com.example.kocchiyomi.data.model
 
-import androidx.room.Embedded
 import com.google.gson.annotations.SerializedName
-import java.util.Date
+import java.util.*
 
 data class ChapterAttributes(
     val volume: String? = null,

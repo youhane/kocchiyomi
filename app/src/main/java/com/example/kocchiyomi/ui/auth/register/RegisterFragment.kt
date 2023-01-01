@@ -21,7 +21,6 @@ import com.example.kocchiyomi.utils.AuthUtil
 import com.example.kocchiyomi.utils.ErrorMessage
 import com.example.kocchiyomi.utils.LoadState
 import com.example.kocchiyomi.utils.toast
-import com.google.android.material.textfield.TextInputEditText
 
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -134,7 +133,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             }
         })
 
-        binding.etSignupConfirmPassword.setOnEditorActionListener { _, actionId, _ ->
+        binding.etSignupConfirmPassword.setOnEditorActionListener { _, _, _ ->
             register()
             true
         }
@@ -177,8 +176,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private fun navigateToHome() {
         val intent = Intent(activity as AuthActivity, MainActivity::class.java)
         startActivity(intent)
-        (activity as AuthActivity)!!.overridePendingTransition(0, 0)
-        (activity as AuthActivity)!!.finish()
+        (activity as AuthActivity).overridePendingTransition(0, 0)
+        (activity as AuthActivity).finish()
     }
 
     private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {

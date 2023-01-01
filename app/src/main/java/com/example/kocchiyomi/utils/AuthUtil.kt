@@ -9,7 +9,6 @@ import kotlinx.coroutines.tasks.await
 object AuthUtil {
 
     fun firebaseAuthInstance(): FirebaseAuth {
-//        println("firebaseAuthInstance.:")
         return FirebaseAuth.getInstance()
     }
 
@@ -23,16 +22,16 @@ object AuthUtil {
 
     suspend fun getUserDetail(): User {
         var userNameRequest = "default"
-        var uidRequest = "default"
-        var emailRequest = "default"
 
-        uidRequest = getAuthId()
-        emailRequest = getAuthEmail()
+        var uidRequest: String = getAuthId()
+        var emailRequest: String = getAuthEmail()
 
         val db = FirestoreHelper.firestoreInstance
         try {
             userNameRequest = db.collection("users").document(getAuthId()).get().await().data?.get("userName") as String
         } catch (e: Exception) {
+            uidRequest = "default"
+            emailRequest = "default@mail.com"
             Log.w("getUserId Exception", e.toString())
         }
 

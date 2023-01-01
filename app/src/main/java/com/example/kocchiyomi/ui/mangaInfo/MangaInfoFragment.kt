@@ -2,35 +2,28 @@ package com.example.kocchiyomi.ui.mangaInfo
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.example.kocchiyomi.KocchiyomiApplication
 import com.example.kocchiyomi.R
 import com.example.kocchiyomi.adapters.ChapterListAdapter
 import com.example.kocchiyomi.data.model.Manga
 import com.example.kocchiyomi.databinding.FragmentMangaInfoBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.launch
 
 class MangaInfoFragment : Fragment() {
     private lateinit var manga: Manga
     private lateinit var binding: FragmentMangaInfoBinding
 
     private val viewModel: MangaInfoViewModel by activityViewModels{
-        MangaInfoViewModelFactory(
-//            (activity?.application as KocchiyomiApplication).chapterDatabase.chapterDao()
-        )
+        MangaInfoViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

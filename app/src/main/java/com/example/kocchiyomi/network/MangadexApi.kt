@@ -2,7 +2,6 @@ package com.example.kocchiyomi.data
 
 import com.example.kocchiyomi.data.api.ApiChaptersResponse
 import com.example.kocchiyomi.data.api.ApiFeedResponse
-import com.example.kocchiyomi.data.api.ApiMangaResponse
 import com.example.kocchiyomi.data.api.ApiReaderResponse
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
