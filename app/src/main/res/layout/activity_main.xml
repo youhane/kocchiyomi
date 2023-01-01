@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorBackgroundPrimary">
 
     <include
         android:id="@+id/app_bar_main"
@@ -22,8 +22,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_drawer"
-        app:itemBackground="@color/colorPrimary"
-        android:background="@color/colorPrimary"
+        app:itemBackground="@color/colorBackgroundPrimary"
+        android:background="@color/colorBackgroundPrimary"
         app:itemTextColor="@color/colorText"
         app:itemIconTint="@color/colorText"
         app:menu="@menu/drawer_menu" />

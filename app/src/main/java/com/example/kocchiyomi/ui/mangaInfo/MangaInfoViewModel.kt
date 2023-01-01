@@ -103,7 +103,9 @@ class MangaInfoViewModel() : ViewModel() {
                                         chapterTempList.add(doc.document.toObject(Chapter::class.java))
                                     }
                                 }
-                                _chapters.value = chapterTempList.toList()
+                                _chapters.value = chapterTempList.toList().sortedBy {
+                                    it.attributes?.chapter?.toDouble()
+                                }
                                 Log.d("Get ChapterFirestore", "Success")
                             }
                         }
@@ -119,7 +121,9 @@ class MangaInfoViewModel() : ViewModel() {
         viewModelScope.launch {
             try {
                 chaptersResponse = Mangadex.retrofitService.getChapters(id)
-                _chapters.value = chaptersResponse.data
+                _chapters.value = chaptersResponse.data.sortedBy {
+                    it.attributes?.chapter?.toDouble()
+                }
                 insertChapter(id, chaptersResponse.data)
                 Log.d("Get ChapterMangadex", "Success")
             } catch (e: Exception) {

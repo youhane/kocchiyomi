@@ -36,7 +36,7 @@ class ChapterListAdapter: RecyclerView.Adapter<ChapterListAdapter.ChapterListVie
         }
 
         var chapternumber = "X"
-        if (chapterList[position].attributes?.chapter != null && chapterList[position].attributes?.chapter?.isNotEmpty() == true){
+        if (chapterList[position].attributes?.chapter != "0" && chapterList[position].attributes?.chapter?.isNotEmpty() == true){
             chapternumber = chapterList[position].attributes?.chapter.toString()
         }
 

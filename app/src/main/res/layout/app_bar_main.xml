@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionbar_height"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorBackgroundPrimary"
             android:fontFamily="@font/poppins_semibold"
             app:titleTextColor="@color/colorText"
                 android:theme="@style/ToolbarTheme" />
@@ -30,7 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         app:itemTextColor="@drawable/icon_color_selector"
-        app:backgroundTint="@color/colorSecondary"
+        app:backgroundTint="@color/colorBackgroundSecondary"
         app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
         app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
         app:itemIconTint="@drawable/icon_color_selector"

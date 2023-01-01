@@ -1,14 +1,9 @@
 <resources>
     <string name="app_name">Kocchiyomi</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sign_out">Sign Out</string>
     <string name="library">Library</string>
     <string name="browse">Browse</string>
-    <string name="history">History</string>
     <string name="search">Search</string>
     <string name="manga_info">Manga Info</string>
     <string name="error_image">Error when load image. Please try again</string>
@@ -31,5 +26,12 @@
     <string name="check_username_email_retry">Check username, email, or password, then retry</string>
     <string name="check_email_retry">Check email, or password, then retry</string>
     <string name="log_out">Log out</string>
+    <string name="in_library">In library</string>
+    <string name="add_to_library">Add to library</string>
+    <string name="manga_cover_image">manga_cover_image</string>
+    <string name="image_page">image_page</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="name_mail_com">name@mail.com</string>
+    <string name="coverimage">coverImage</string>
 
 </resources>

@@ -7,7 +7,7 @@
     android:label="@string/search"
     tools:context=".ui.search.SearchFragment"
     android:id="@+id/searchFragment"
-    tools:background="@color/colorPrimary"
+    tools:background="@color/colorBackgroundPrimary"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -26,7 +26,7 @@
             app:queryHint="Search here ..."
             app:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent"
-            android:background="@color/colorSecondary"
+            android:background="@color/colorBackgroundSecondary"
             app:searchHintIcon="@drawable/ic_search_24"
             app:closeIcon="@drawable/ic_close_24"
             app:searchIcon="@drawable/ic_search_24"
