@@ -19,7 +19,7 @@ Thanks! [MangaDex](https://api.mangadex.org/docs/) for the API 😉
 
 <br/>
 
-# Postman can be accessed [here!](https://app.getpostman.com/join-team?invite_code=b7f14b6a982de8934298486a70c55ce5&target_code=74ad2e0efa9109c3df227b61951511ac)
+# Postman can be accessed [here!](https://www.postman.com/speeding-firefly-189038/workspace/f123e837-6a77-44b7-99f7-9b7104b9705b/overview)
 
 # Project Documentation
 
