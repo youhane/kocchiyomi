@@ -134,7 +134,7 @@ Switched to Fragments and fixed the MainActivity
 Implemented RecylerView for Manga List and the HTTP Request for the Manga List
 
 - December 3, 2022
-Created Bottom Nav and implemented a CompactActivity insted of binding. The Browse Recyler View was also added. Other than that, a Black Action Bar was added and the rest is doing refactor.
+Created Bottom Nav and implemented binding instead of Kotlin extension. The Browse Recyler View was also added. Other than that, a Black Action Bar was added and the rest is doing refactor.
 
 - December 6, 2022
 Added Manga Info Page and Fixed Manga Info Chapter to handle null chapter(s)
@@ -152,13 +152,13 @@ Added Login and Register view model and Fixed login password and navigation bug
 Added App side drawer, Fixed login and register empty field handler, Added signout function and Fixed back button stack bug
 
 - December 16, 2022
-Updated project to support android version below 12
+Updated project to support android version below 12 on UI
 
 - December 17, 2022
 The Main ViewModel, Tab on the reader page and exclude tag on browse was added, and there was a fix in duplicate call function on setDrawerHeader()
 
 - December 18, 2022
-The library was added, then add to Library Firestore Function. Other than that, the data Persistent when re-login was fixed
+The library page was added, then add to Library Firestore Function. Other than that, the data Persistent when re-login was fixed
 
 - December 19, 2022
 The Offline Chapter List and Offline Browse was added, the Limit Call to Firestore and Chapter fetch from cache If online was fixed, and the history tab was changed to search
