@@ -101,13 +101,13 @@ As shown in the image above, when the user type a certain keyword, mangas with c
 
 ## 8. Bottom Navigation Bar
 
-  <img src="./images/16.png" width="300" height="600" />
+  <img src="./images/16.png" width="300" height="50" />
   
 With the bottom navigation bar, the user will be able to easily move tabs. The icon will be highlighted if the user is in that certain tab.
 
 ## 9. Drawer
   
-  <img src="./images/17.png" width="300" height="600" />
+  <img src="./images/17.png" width="300" height="75" />
   
   <img src="./images/18.png" width="300" height="600" />
   
@@ -169,25 +169,12 @@ The manga model was fixed from serializeable to parcelable
 - January 1, 2023
 The Search Page and App Icon was added, and cleaned the unused resources. Updated the Nested Scroll on Search Page. Fixed Chapter List by adding hasfixedsize and removed wrap content.
 
-
-
-
+## Video Demo App Shorts
 
 https://user-images.githubusercontent.com/55782438/210841567-85c54e80-1adf-44a7-a282-a6fb2f44c9d7.mp4
 
-
-
-
 https://user-images.githubusercontent.com/55782438/210841419-39eca0c3-1f82-43fd-9d2b-702784d84c5b.mp4
-
-
-
 
 https://user-images.githubusercontent.com/55782438/210839909-2fa92806-b4b2-45c3-9908-89e1168a02cf.mp4
 
-
-
-
-
 https://user-images.githubusercontent.com/55782438/210839427-7a3ca497-574f-4f7a-b9dd-eea6e3029885.mp4
-
