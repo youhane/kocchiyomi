@@ -169,6 +169,9 @@ The manga model was fixed from serializeable to parcelable
 - January 1, 2023
 The Search Page and App Icon was added, and cleaned the unused resources. Updated the Nested Scroll on Search Page. Fixed Chapter List by adding hasfixedsize and removed wrap content.
 
+- January 6, 2023
+The color of search card background is changed to black
+
 ## Video Demo App Shorts
 
 https://user-images.githubusercontent.com/55782438/210841567-85c54e80-1adf-44a7-a282-a6fb2f44c9d7.mp4
