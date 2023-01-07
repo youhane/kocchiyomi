@@ -31,7 +31,11 @@ class MangaListAdapter : RecyclerView.Adapter<MangaListAdapter.MangaListViewHold
     }
 
     override fun onBindViewHolder(holder: MangaListViewHolder, position: Int) {
-        holder.iv_coverImage.load("https://uploads.mangadex.org/covers/${mangaList[position].id}/${mangaList[position].relationships?.first{ rel -> rel.type == "cover_art" }?.attributes?.fileName}.256.jpg")
+        val mangaCover = mangaList[position].relationships?.firstOrNull{ rel -> rel.type == "cover_art" }?.attributes?.fileName
+        if (mangaCover != null) {
+            holder.iv_coverImage.load("https://uploads.mangadex.org/covers/${mangaList[position].id}/${mangaCover}.256.jpg")
+        }
+
         holder.tv_titleName.text = mangaList[position].attributes?.title?.en ?: "No Title"
         holder.parentLayout.setOnClickListener {
             onClick?.invoke(mangaList[position])
