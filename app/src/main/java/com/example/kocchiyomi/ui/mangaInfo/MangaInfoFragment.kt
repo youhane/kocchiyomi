@@ -105,13 +105,13 @@ class MangaInfoFragment : Fragment() {
 
     private fun setMangaInfoHeader() {
         binding.tvMangaNameText.text = manga.attributes?.title?.en ?: "No Title"
-        binding.tvMangaAuthorText.text = manga.relationships?.first{ rel -> rel.type == "author"}?.attributes?.name.toString()
-        Log.d("attr", manga.relationships?.first{ rel -> rel.type == "author"}?.attributes?.name.toString())
+        binding.tvMangaAuthorText.text = manga.relationships?.firstOrNull{ rel -> rel.type == "author"}?.attributes?.name.toString()
         binding.tvMangaDescriptionText.text = manga.attributes?.description?.en ?: ""
 
-        binding.ivMangaCoverImage
-            .load("https://uploads.mangadex.org/covers/${manga.id}/${manga.relationships?.first{ rel -> rel.type == "cover_art" }?.attributes?.fileName}.256.jpg")
-
+        val mangaCover = manga.relationships?.firstOrNull{ rel -> rel.type == "cover_art" }?.attributes?.fileName
+        if (mangaCover != null) {
+            binding.ivMangaCoverImage.load("https://uploads.mangadex.org/covers/${manga.id}/${mangaCover}.256.jpg")
+        }
         binding.ivMangaCoverImage.clipToOutline=true
     }
 
