@@ -170,7 +170,10 @@ The manga model was fixed from serializeable to parcelable
 The Search Page and App Icon was added, and cleaned the unused resources. Updated the Nested Scroll on Search Page. Fixed Chapter List by adding hasfixedsize and removed wrap content.
 
 - January 6, 2023
-The color of search card background is changed to black
+The color of search card background is changed to black.
+
+- January 7, 2023
+The cover image loading bug that caused crash is fixed, we changed .first method to .firstOrNull method when searching in list for cover image filename.
 
 ## Video Demo App Shorts
 
