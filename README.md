@@ -173,7 +173,7 @@ The Search Page and App Icon was added, and cleaned the unused resources. Update
 The color of search card background is changed to black.
 
 - January 7, 2023
-The cover image loading bug that caused crash is fixed, we changed .first method to .firstOrNull method when searching in list for cover image filename.
+The cover image loading bug that caused the crash is fixed. We changed the .first method to the .firstOrNull method when searching in the list for the cover image filename.
 
 ## Video Demo App Shorts
 
